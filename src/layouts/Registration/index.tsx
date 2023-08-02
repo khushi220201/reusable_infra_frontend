@@ -13,18 +13,6 @@ const RegistrationLayout: FC<RegistrationLayoutInterface> = (props) => {
 				justify={'space-between'}
 				align={'middle'}
 			>
-				<Col className={styles['registration__details']} span={13}>
-					<div className={styles['registration__details--logo']}>
-						<Image
-							src="/assets/images/cap-logo.png"
-							preview={false}
-							alt="group"
-						/>
-					</div>
-					<div className={styles['registration__details--body']}>
-						{children}
-					</div>
-				</Col>
 				<Col className={styles['registration__layout']} span={11}>
 					<Image
 						className={styles['registration__layout--image']}
@@ -33,6 +21,19 @@ const RegistrationLayout: FC<RegistrationLayoutInterface> = (props) => {
 						alt="group"
 					/>
 				</Col>
+				<Col className={styles['registration__details']} span={13}>
+					<div className={styles['registration__details--logo']}>
+						<Image
+							src="/assets/images/animal_planet_logo.png"
+							preview={false}
+							alt="group"
+						/>
+					</div>
+					<div className={styles['registration__details--body']}>
+						{children}
+					</div>
+				</Col>
+				
 			</Row>
 		</div>
 	);

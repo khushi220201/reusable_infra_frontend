@@ -10,5 +10,9 @@ export interface LoginLayoutBodyProps {
 	redirectUrl?: string;
 	data?: any;
 	onSubmit?: any;
+	btnIntuit?:any;
+	btnXero?:any;
 	isLoading?: boolean;
+	accountText?:string;
+	accountUrl?:string;
 }

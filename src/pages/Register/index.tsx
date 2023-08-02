@@ -8,8 +8,8 @@ import { getCompanies } from 'redux/slice/companySlice';
 import { useState } from 'react';
 import { fetchProfileAction } from 'redux/action/profileAction';
 
-// Login page
-const Login = () => {
+// Register page
+const Register = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -35,13 +35,13 @@ const Login = () => {
 	return (
 		<RegistrationLayout>
 			<LoginLayoutBody
-				title="Log in"
+				title="Register"
 				description="<p>
 							Welcome to <strong> Animal Planet! </strong>Please Enter your
 							Details.
 						</p>"
-				formData={FORMDATA.loginFields}
-				buttonTitle={'Sign in'}
+				formData={FORMDATA.registerFields}
+				buttonTitle={'Register Now!'}
 				action={loginAction}
 				redirectUrl="/forgot-password"
 				redirectText="Forgot password?"
@@ -49,11 +49,11 @@ const Login = () => {
 				btnXero={'Sign in with Xero'}
 				onSubmit={onSubmit}
 				isLoading={isLoading}
-				accountText={" Don't have an account yet?"}
-				accountUrl={'Sign up Today!'}
+				accountText={"Already have an account?"}
+				accountUrl={'Login Now!'}
 			></LoginLayoutBody>
 		</RegistrationLayout>
 	);
 };
 
-export default Login;
+export default Register;
