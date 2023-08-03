@@ -1,14 +1,14 @@
 import { Col, Image, Row, Select } from 'antd';
 import UserProfileModal from 'components/Profile';
-import { SettingsBody } from 'components/settings';
-import SettingsLayout from 'layouts/Settings';
+// import { SettingsBody } from 'components/settings';
+// import SettingsLayout from 'layouts/Settings';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logoutAction } from 'redux/slice/loginSlice';
 import { clearRedux as clearReduxRole } from 'redux/slice/roleTableSlice';
 import { clearRedux as clearReduxUser } from 'redux/slice/userSlice';
-import SideDrawerWrapper from '../SideDrawerWrapper';
+// import SideDrawerWrapper from '../SideDrawerWrapper';
 import UserNameBox from '../UserNameBox';
 import styles from './index.module.scss';
 import './index.scss';
@@ -17,11 +17,13 @@ import './index.scss';
 const Header = () => {
 	// Inits
 	const [drawerAnimation, setDrawerAnimation] = useState<boolean>(false);
+	console.log("🚀 ~ file: index.tsx:20 ~ Header ~ drawerAnimation:", drawerAnimation)
 	const [isSideDrawerOpen, setSideDrawerOpen] = useState<boolean>(false);
-	const [selectedSidebar, setSelectedSidebar] = useState<string>('users');
+	// const [selectedSidebar, setSelectedSidebar] = useState<string>('users');
 	const [drawerInfo] = useState({
 		drawerTitle: 'Settings',
 	});
+	console.log("🚀 ~ file: index.tsx:26 ~ Header ~ drawerInfo:", drawerInfo)
 	const [isProfileModalOpen, setProfileModalOpen] = useState<boolean>(false);
 	const [organizationOptions, setOrganizationOptions] = useState<any>([]);
 	const [selectedOrganization, setSelectedOrganization] = useState<any>(
@@ -43,24 +45,25 @@ const Header = () => {
 	}, [userData]);
 
 	// For remove from the dom
-	const removeDrawerFromDom = () => {
-		setSideDrawerOpen(false);
-	};
+	// const removeDrawerFromDom = () => {
+	// 	setSideDrawerOpen(false);
+	// };
 	// For open the sideDrawer with animation
 	const openDrawerHandler = () => {
 		setDrawerAnimation(true);
 		setSideDrawerOpen(true);
 	};
+	console.log("🚀 ~ file: index.tsx:56 ~ openDrawerHandler ~ openDrawerHandler:", openDrawerHandler)
 
 	// For perform the close animation
-	const closeDrawerByAnimation = () => {
-		setDrawerAnimation(false);
-	};
+	// const closeDrawerByAnimation = () => {
+	// 	setDrawerAnimation(false);
+	// };
 
 	// for handle the change of the sidebar
-	const sideBarChangeHandler = (selectedValue: any) => {
-		setSelectedSidebar(selectedValue.key);
-	};
+	// const sideBarChangeHandler = (selectedValue: any) => {
+	// 	setSelectedSidebar(selectedValue.key);
+	// };
 
 	// Logout Handler
 
@@ -141,7 +144,7 @@ const Header = () => {
 
 						<div
 							className={styles['header__details-right--settings']}
-							onClick={openDrawerHandler}
+							onClick={()=>{navigate('/settings')}}
 						>
 							<Image
 								src="/assets/images/settings.png"
@@ -184,7 +187,7 @@ const Header = () => {
 				</Row>
 			</header>
 
-			{isSideDrawerOpen && (
+			{/* {isSideDrawerOpen && (
 				<SideDrawerWrapper
 					isOpen={drawerAnimation}
 					removeDrawerFromDom={removeDrawerFromDom}
@@ -200,7 +203,7 @@ const Header = () => {
 						<SettingsBody selectedSidebar={selectedSidebar} />
 					</SettingsLayout>
 				</SideDrawerWrapper>
-			)}
+			)} */}
 
 			{isProfileModalOpen && (
 				<UserProfileModal

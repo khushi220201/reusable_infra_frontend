@@ -14,7 +14,7 @@ const Sidebar: FC<SidebarProps> = (props) => {
 	return (
 		<Sider
 			style={{
-				background: '#344735',
+				background: '#fff',
 				maxHeight: '100%',
 				height: '100%',
 				overflow: 'auto',
@@ -29,7 +29,7 @@ const Sidebar: FC<SidebarProps> = (props) => {
 					onClick={handleSidebar}
 					className="menu-item "
 					style={{
-						background: '#344735',
+						background: '#fff',
 						padding: 0,
 					}}
 				/>

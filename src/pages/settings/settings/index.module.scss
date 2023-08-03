@@ -1,0 +1,20 @@
+@import '../../../scss/keyframe.scss';
+@import '../../../scss/mixin.scss';
+
+.header {
+    // box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+    padding: 2rem 3.636rem;
+    @include mq('mid-desktop') {
+        padding: 20px 3.636rem;
+    }
+    &--heading {
+        font-size: 2.4rem;
+        font-weight: 700;
+    }
+    &--close-icon {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -1,6 +1,9 @@
 import { AuthLayout } from 'components/Global/AuthLayout';
 import GlobalLayout from 'layouts/Global';
-import { ForgotPassword, Home, Login, ResetPassword } from 'pages';
+import { ForgotPassword,Home, Login, ResetPassword } from 'pages';
+import Roles from 'pages/settings/roles';
+import Settings from 'pages/settings/settings';
+import Users from 'pages/settings/users';
 import { createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -17,6 +20,22 @@ const router = createBrowserRouter([
 					},
 				],
 			},
+			{
+				path: '/settings',
+				element: <Settings />,
+				children: [
+					{
+						index:true,
+						path: '/settings/users',
+						element: <Users />
+					},{
+						
+						path: '/settings/roles',
+						element: <Roles />
+					}
+				]
+			},
+			
 			{
 				path: '/login',
 				element: <Login />,
