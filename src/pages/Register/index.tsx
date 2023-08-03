@@ -3,10 +3,11 @@ import { FORMDATA } from "constants/Data";
 import { loginAction } from "redux/slice/loginSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCompanies } from "redux/slice/companySlice";
+// import { getCompanies } from "redux/slice/companySlice";
 import { useState } from "react";
-import { fetchProfileAction } from "redux/action/profileAction";
+// import { fetchProfileAction } from "redux/action/profileAction";
 import { RegisterLayoutBody } from "components/Register";
+import { registerAction } from "redux/slice/registerSlice";
 
 // Register page
 const Register = () => {
@@ -16,15 +17,17 @@ const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = (values: any) => {
+    console.log("🚀 ~ file: index.tsx:20 ~ onSubmit ~ values:", values)
     setIsLoading(true);
-    dispatch(loginAction(values) as any)
+    dispatch(registerAction(values) as any)
       .unwrap()
-      .then((res: any) => {
-        dispatch(fetchProfileAction() as any).then(() => {
-          setIsLoading(false);
-          dispatch(getCompanies(res));
-          navigate("/");
-        });
+      .then(() => {
+        // dispatch(fetchProfileAction() as any).then(() => {
+        //   setIsLoading(false);
+        //   dispatch(getCompanies(res));
+        // });
+        navigate("/login");
+
       })
       .catch(() => {
         setIsLoading(false);

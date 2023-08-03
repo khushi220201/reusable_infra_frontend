@@ -139,7 +139,7 @@ export const FORMDATA = {
 				},
 			],
 		},
-		
+
 		{
 			title: 'Password',
 			id: 'password',
@@ -148,12 +148,39 @@ export const FORMDATA = {
 			svg: <PasswordSvg />,
 			placeHolder: '',
 			required: true,
+			// rules: [
+			// 	{
+			// 		required: true,
+			// 		message: 'Please enter your password',
+			// 		validateTrigger: 'onChange',
+			// 	},
+			// ],
 			rules: [
 				{
 					required: true,
-					message: 'Please enter your password',
-					validateTrigger: 'onChange',
+					message: 'Please Enter your Password ',
+					validationTrigger: 'onBlur',
 				},
+				({ getFieldValue }: any) => ({
+					validator() {
+						const re =
+							// /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+							/^.{8}$/
+						if (getFieldValue('password') !== undefined) {
+							if (re.test(getFieldValue('password'))) {
+								return Promise.resolve()
+							} else {
+								return Promise.reject(
+									new Error(
+										'Password must be 8 characters atleast ',
+									),
+								)
+							}
+						}
+						return Promise.reject()
+					},
+					validateTrigger: 'onSubmit',
+				}),
 			],
 		},
 		{
@@ -167,9 +194,18 @@ export const FORMDATA = {
 			rules: [
 				{
 					required: true,
-					message: 'Please enter your password',
-					validateTrigger: 'onChange',
+					message: 'Please Re Enter your Password ',
+					validationTrigger: 'onBlur',
 				},
+				({ getFieldValue }: any) => ({
+					validator(_: any, value: any) {
+						if (!value || getFieldValue('password') === value) {
+							return Promise.resolve()
+						}
+						return Promise.reject(new Error('Passwords do not match!'))
+					},
+					validateTrigger: 'onSubmit',
+				}),
 			],
 		},
 		{
@@ -180,13 +216,34 @@ export const FORMDATA = {
 			svg: <PhoneSvg />,
 			placeHolder: '',
 			required: true,
+			// rules: [
+			// 	{
+			// 		required: true,
+			// 		message: 'Please enter your phone number',
+			// 		validateTrigger: 'onChange',
+			// 	},
+
+			// ],
 			rules: [
 				{
 					required: true,
-					message: 'Please enter your phone number',
-					validateTrigger: 'onChange',
+					message: 'Please input your phone number!',
+					validationTrigger: 'onBlur',
 				},
-				
+				({ getFieldValue }: any) => ({
+					validator() {
+						const re = /^\d{10}$/
+						if (getFieldValue('phone') !== undefined) {
+							if (re.test(getFieldValue('phone'))) {
+								return Promise.resolve()
+							} else {
+								return Promise.reject(new Error('Invalid phone number'))
+							}
+						}
+						return Promise.reject()
+					},
+					validateTrigger: 'onSubmit',
+				}),
 			],
 		},
 	],

@@ -42,6 +42,7 @@ const AuthSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
+		
 		builder.addCase(loginAction.pending, (state) => {
 			state.isLoading = true;
 			state.error = null;
@@ -57,6 +58,8 @@ const AuthSlice = createSlice({
 			state.error = action.payload;
 			toastText(action?.payload?.message, 'error');
 		});
+
+
 		builder.addCase(logoutAction.pending, (state) => {
 			state.isLoading = true;
 			state.error = null;
