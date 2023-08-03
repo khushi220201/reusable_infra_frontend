@@ -7,6 +7,8 @@ import {
 	SubscriptionSvg,
 	RoleSvg,
 	UsersSvg,
+	UserSvg,
+	PhoneSvg,
 } from 'utils/svgs';
 
 const phoneNumberValidator = (_: any, value: any) => {
@@ -73,7 +75,7 @@ export const FORMDATA = {
 			id: 'firstName',
 			type: 'text',
 			name: 'firstName',
-			svg: <EmailSvg />,
+			svg: <UserSvg />,
 			placeHolder: '',
 			required: true,
 			rules: [
@@ -89,7 +91,7 @@ export const FORMDATA = {
 			id: 'lastName',
 			type: 'text',
 			name: 'lastName',
-			svg: <EmailSvg />,
+			svg: <UserSvg />,
 			placeHolder: '',
 			required: true,
 			rules: [
@@ -105,7 +107,7 @@ export const FORMDATA = {
 			id: 'companyName',
 			type: 'text',
 			name: 'companyName',
-			svg: <EmailSvg />,
+			svg: <UserSvg />,
 			placeHolder: '',
 			required: true,
 			rules: [
@@ -137,23 +139,7 @@ export const FORMDATA = {
 				},
 			],
 		},
-		{
-			title: 'Phone Number',
-			id: 'phone',
-			type: 'text',
-			name: 'phone',
-			svg: <EmailSvg />,
-			placeHolder: '',
-			required: true,
-			rules: [
-				{
-					required: true,
-					message: 'Please enter your phone number',
-					validateTrigger: 'onChange',
-				},
-				
-			],
-		},
+		
 		{
 			title: 'Password',
 			id: 'password',
@@ -184,6 +170,23 @@ export const FORMDATA = {
 					message: 'Please enter your password',
 					validateTrigger: 'onChange',
 				},
+			],
+		},
+		{
+			title: 'Phone Number',
+			id: 'phone',
+			type: 'text',
+			name: 'phone',
+			svg: <PhoneSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your phone number',
+					validateTrigger: 'onChange',
+				},
+				
 			],
 		},
 	],

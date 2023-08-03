@@ -1,0 +1,88 @@
+@import "../../../scss/mixin.scss";
+
+.register-body {
+  &__center {
+    display: inline-grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+    width: 70rem;
+  }
+  &__top {
+    &--title {
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
+      @include mq("desktop") {
+        margin-bottom: 2.2rem;
+      }
+    }
+    &--description {
+      & > p {
+        font-size: 15px;
+        color: #425465;
+        margin-bottom: 2.4rem;
+        @include mq("desktop") {
+          margin-bottom: 3.3rem;
+        }
+      }
+    }
+  }
+
+  &__account-text {
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+    &--text {
+      margin-right: 1rem;
+    }
+    &--link {
+      height: 25px;
+      border-bottom: 2px solid #1677ff;
+    }
+  }
+  &__end {
+    &--button {
+      width: 100%;
+      font-size: 2rem !important;
+      background: #286fd1;
+      margin-bottom: 1.5rem;
+      &:hover {
+        background: #286fd1 !important;
+      }
+    }
+  }
+  &__signin-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 5rem;
+    gap: 3rem;
+    &--button-intuit {
+      width: 100%;
+      font-size: 2rem !important;
+      background: #0b78c2;
+      margin-bottom: 1.5rem;
+      &:hover {
+        background: #0b78c2 !important;
+      }
+    }
+    &--button-xero {
+      width: 100%;
+      font-size: 2rem !important;
+      margin-bottom: 1.5rem;
+      color: #4e5562;
+      &:hover {
+        color: #4e5562 !important;
+      }
+    }
+    img {
+      vertical-align: middle;
+      margin-right: 1rem;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
 import { SingleUserInput } from 'components/Global/InputWithLabel/types';
-export interface LoginLayoutBodyProps {
+export interface RegisterLayoutBodyProps {
 	title: string;
 	description?: string;
 	formData: SingleUserInput[];
@@ -12,7 +12,6 @@ export interface LoginLayoutBodyProps {
 	onSubmit?: any;
 	btnIntuit?:any;
 	btnXero?:any;
-	rememberMe?:string;
 	isLoading?: boolean;
 	accountText?:string;
 	accountUrl?:string;

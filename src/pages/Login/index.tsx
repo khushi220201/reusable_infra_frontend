@@ -1,5 +1,5 @@
 import { LoginLayoutBody } from 'components/Login';
-import { RegistrationLayout } from 'layouts';
+import { LoginLayout } from 'layouts';
 import { FORMDATA } from 'constants/Data';
 import { loginAction } from 'redux/slice/loginSlice';
 import { useDispatch } from 'react-redux';
@@ -33,7 +33,7 @@ const Login = () => {
 	};
 	// JSX
 	return (
-		<RegistrationLayout>
+		<LoginLayout>
 			<LoginLayoutBody
 				title="Log in"
 				description="<p>
@@ -47,12 +47,13 @@ const Login = () => {
 				redirectText="Forgot password?"
 				btnIntuit={'Sign in with Intuit'}
 				btnXero={'Sign in with Xero'}
+				rememberMe={'Remember me'}
 				onSubmit={onSubmit}
 				isLoading={isLoading}
 				accountText={" Don't have an account yet?"}
 				accountUrl={'Sign up Today!'}
 			></LoginLayoutBody>
-		</RegistrationLayout>
+		</LoginLayout>
 	);
 };
 

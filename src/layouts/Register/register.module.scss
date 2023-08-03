@@ -1,0 +1,31 @@
+.register {
+  height: 100vh;
+  &__wrapper {
+    height: 100%;
+  }
+  &__details {
+    max-width: 70rem;
+    // padding-top: 12.8rem;
+    margin: 0 auto;
+    &--logo {
+      height: 30%;
+      width: 30%;
+      margin-bottom: 1rem;
+      & > img {
+        height: 50%;
+        width: 50%;
+      }
+    }
+  }
+  &__layout {
+    background-color: #c9dbf3;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &--image {
+      height: 79.5rem;
+      width: 62.7rem;
+    }
+  }
+}

@@ -19,6 +19,7 @@ const LoginLayoutBody: FC<LoginLayoutBodyProps> = (props) => {
     onSubmit,
     btnIntuit,
     btnXero,
+    rememberMe,
     isLoading,
     accountText,
     accountUrl,
@@ -58,11 +59,13 @@ const LoginLayoutBody: FC<LoginLayoutBodyProps> = (props) => {
           })}
         </div>
         <div className={styles["login-body__remberme-forgot"]}>
-          <Checkbox
-            className={styles["login-body__remberme-forgot--remeber-me"]}
-          >
-            Remember me
-          </Checkbox>
+          {rememberMe && (
+            <Checkbox
+              className={styles["login-body__remberme-forgot--remeber-me"]}
+            >
+              {rememberMe}
+            </Checkbox>
+          )}
 
           <p
             className={styles["login-body__remberme-forgot--forgot-password"]}
@@ -90,21 +93,24 @@ const LoginLayoutBody: FC<LoginLayoutBodyProps> = (props) => {
           </Button>
         </div>
         <div className={styles["login-body__signin-options"]}>
-          <Button
-            type="primary"
-            className={`${
-              styles["login-body__signin-options--button-intuit"]
-            } ${isLoading && "pointer-event-none"}`}
-            size="large"
+          {btnIntuit && (
+            <Button
+              type="primary"
+              className={`${
+                styles["login-body__signin-options--button-intuit"]
+              } ${isLoading && "pointer-event-none"}`}
+              size="large"
 
-            // disabled={isLoading}
-          >
-            {isLoading ? (
-              <img src="assets/gifs/loading-black.gif" height={40} />
-            ) : (
-              <>{btnIntuit}</>
-            )}
-          </Button>
+              // disabled={isLoading}
+            >
+              {isLoading ? (
+                <img src="assets/gifs/loading-black.gif" height={40} />
+              ) : (
+                <>{btnIntuit}</>
+              )}
+            </Button>
+          )}
+
           {btnXero && (
             <Button
               className={`${
@@ -123,17 +129,19 @@ const LoginLayoutBody: FC<LoginLayoutBodyProps> = (props) => {
             </Button>
           )}
         </div>
-        <div className={styles["login-body__account-text"]}>
-          <div className={styles["login-body__account-text--text"]}>
-            {accountText}
+        {accountText && accountUrl && (
+          <div className={styles["login-body__account-text"]}>
+            <div className={styles["login-body__account-text--text"]}>
+              {accountText}
+            </div>
+            <Link
+              to={"/register"}
+              className={styles["login-body__account-text--link"]}
+            >
+              {accountUrl}
+            </Link>
           </div>
-          <Link
-            to={"/register"}
-            className={styles["login-body__account-text--link"]}
-          >
-            {accountUrl}
-          </Link>
-        </div>
+        )}
       </Form>
     </div>
   );
