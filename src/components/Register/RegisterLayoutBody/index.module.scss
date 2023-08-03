@@ -1,48 +1,29 @@
 @import "../../../scss/mixin.scss";
 
-.login-body {
-  &__wrapper {
+.register-body {
+  &__center {
+    display: inline-grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+    width: 70rem;
   }
   &__top {
     &--title {
       font-weight: 700;
-      font-size: 3.4rem;
-      margin-bottom: 1.2rem;
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
       @include mq("desktop") {
         margin-bottom: 2.2rem;
       }
     }
     &--description {
       & > p {
-        font-size: 17px;
+        font-size: 15px;
         color: #425465;
-        margin-bottom: 4.4rem;
+        margin-bottom: 2.4rem;
         @include mq("desktop") {
           margin-bottom: 3.3rem;
         }
-      }
-    }
-  }
-  &__remberme-forgot {
-    display: flex;
-    align-items: center;
-    &--remeber-me {
-      font-size: 16px !important;
-      margin-bottom: 2.5rem;
-      font-weight: 500 !important;
-      color: #27272E;
-      width: max-content;
-      margin-right: auto;
-    }
-    &--forgot-password {
-      font-size: 16px;
-      margin-bottom: 2.5rem;
-      font-weight: 500;
-      color: #ff0000;
-      width: max-content;
-      margin-left: auto;
-      &:hover {
-        cursor: pointer;
       }
     }
   }
@@ -69,8 +50,7 @@
       width: 100%;
       font-size: 2rem !important;
       background: #286fd1;
-      height: 5.4rem !important;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
       &:hover {
         background: #286fd1 !important;
       }
@@ -86,8 +66,7 @@
       width: 100%;
       font-size: 2rem !important;
       background: #0b78c2;
-      height: 5.4rem !important;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
       &:hover {
         background: #0b78c2 !important;
       }
@@ -95,8 +74,7 @@
     &--button-xero {
       width: 100%;
       font-size: 2rem !important;
-      height: 5.4rem !important;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
       color: #4e5562;
       &:hover {
         color: #4e5562 !important;

@@ -1,5 +1,6 @@
-import RegistrationLayout from './Registration';
-import SettingsLayout from './Settings';
-import GlobalLayout from './Global';
+import RegistrationLayout from "./Register";
+import LoginLayout from "./Login";
+import SettingsLayout from "./Settings";
+import GlobalLayout from "./Global";
 
-export { RegistrationLayout, SettingsLayout, GlobalLayout };
+export { RegistrationLayout, LoginLayout, SettingsLayout, GlobalLayout };

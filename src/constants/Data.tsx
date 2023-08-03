@@ -7,6 +7,8 @@ import {
 	SubscriptionSvg,
 	RoleSvg,
 	UsersSvg,
+	UserSvg,
+	PhoneSvg,
 } from 'utils/svgs';
 
 const phoneNumberValidator = (_: any, value: any) => {
@@ -64,6 +66,127 @@ export const FORMDATA = {
 				// 		'Password should have minimum 8 characters at least 1 uppercase, 1 lowercase, 1 number and 1 special character',
 				// 	validateTrigger: 'onChange',
 				// },
+			],
+		},
+	],
+	registerFields: [
+		{
+			title: 'First Name',
+			id: 'firstName',
+			type: 'text',
+			name: 'firstName',
+			svg: <UserSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your first name',
+					validateTrigger: 'onChange',
+				}
+			],
+		},
+		{
+			title: 'Last Name',
+			id: 'lastName',
+			type: 'text',
+			name: 'lastName',
+			svg: <UserSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your last name',
+					validateTrigger: 'onChange',
+				}
+			],
+		},
+		{
+			title: 'Company Name',
+			id: 'companyName',
+			type: 'text',
+			name: 'companyName',
+			svg: <UserSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your company name',
+					validateTrigger: 'onChange',
+				}
+			],
+		},
+		{
+			title: 'Email Address',
+			id: 'email',
+			type: 'text',
+			name: 'email',
+			svg: <EmailSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your email address',
+					validateTrigger: 'onChange',
+				},
+				{
+					type: 'email',
+					message: 'Please enter valid e-mail',
+					validateTrigger: 'onChange',
+				},
+			],
+		},
+		
+		{
+			title: 'Password',
+			id: 'password',
+			type: 'password',
+			name: 'password',
+			svg: <PasswordSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your password',
+					validateTrigger: 'onChange',
+				},
+			],
+		},
+		{
+			title: 'Re Enter Password',
+			id: 'confirmPassword',
+			type: 'password',
+			name: 'confirmPassword',
+			svg: <PasswordSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your password',
+					validateTrigger: 'onChange',
+				},
+			],
+		},
+		{
+			title: 'Phone Number',
+			id: 'phone',
+			type: 'text',
+			name: 'phone',
+			svg: <PhoneSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your phone number',
+					validateTrigger: 'onChange',
+				},
+				
 			],
 		},
 	],
