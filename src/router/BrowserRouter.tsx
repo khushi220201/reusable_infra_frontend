@@ -6,6 +6,8 @@ import Settings from 'pages/settings/settings';
 import Users from 'pages/settings/users';
 import Register from 'pages/Register';
 import { createBrowserRouter } from 'react-router-dom';
+import Integrations from 'pages/settings/integrations';
+import Subcription from 'pages/settings/subscription';
 
 const router = createBrowserRouter([
 	{
@@ -26,12 +28,25 @@ const router = createBrowserRouter([
 				element: <Settings />,
 				children: [
 					{
-						path: 'users',
+						index:true,
+						path: '/settings/users',
 						element: <Users />
-					},{
+					}
+					,
+					{
 						
-						path: 'roles',
+						path: '/settings/roles',
 						element: <Roles />
+					},
+					{
+						
+						path: '/settings/integrations',
+						element: <Integrations />
+					},
+					{
+						
+						path: '/settings/subscription',
+						element: <Subcription />
 					}
 				]
 			},

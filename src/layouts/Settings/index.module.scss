@@ -1,5 +1,5 @@
 .settings-layout {
-	height: 100vh;
+	height: calc(100vh - 70px);
 	&__wrapper {
 		display: flex;
 		height: 100%;

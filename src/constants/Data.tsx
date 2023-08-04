@@ -1,8 +1,6 @@
 import {
 	EmailSvg,
 	PasswordSvg,
-	ConfigurationsSvg,
-	CustomRulesSvg,
 	IntegrationsSvg,
 	SubscriptionSvg,
 	RoleSvg,
@@ -340,16 +338,6 @@ export const FORMDATA = {
 			key: 'subscription',
 			icon: <SubscriptionSvg />,
 			label: 'Subscription',
-		},
-		{
-			key: 'configurations',
-			icon: <ConfigurationsSvg />,
-			label: 'Configurations',
-		},
-		{
-			key: 'customRules',
-			icon: <CustomRulesSvg />,
-			label: 'Custom Rules',
 		},
 	],
 	pageMenuItems: [
