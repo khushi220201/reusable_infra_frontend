@@ -8,8 +8,7 @@ import { LeftOutlined } from "@ant-design/icons";
 
 // register layout body designing
 const RegisterLayoutBody: FC<RegisterLayoutBodyProps> = (props) => {
-
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   // Inits
   const {
     title,
@@ -39,17 +38,21 @@ const RegisterLayoutBody: FC<RegisterLayoutBodyProps> = (props) => {
       >
         <div className={styles["register-body__top"]}>
           <div className={styles["register-body__top--title"]}>
-          <h4  className={styles["register-body__top--title--maintitle"]}>{title} </h4>
-          <div onClick={()=>{navigate('/login')}} style={{cursor:'pointer'}}>
-          <LeftOutlined /> Back
+            <h4 className={styles["register-body__top--title--maintitle"]}>
+              {title}{" "}
+            </h4>
+            <div
+              onClick={() => {
+                navigate("/login");
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              <LeftOutlined /> Back
+            </div>
           </div>
-          
-          </div>
-          
           {description && (
             <div className={styles["register-body__top--description"]}>
               <p dangerouslySetInnerHTML={{ __html: description }} />
-             
             </div>
           )}
         </div>
