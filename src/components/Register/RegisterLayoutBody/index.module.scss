@@ -8,13 +8,20 @@
     width: 70rem;
   }
   &__top {
+   
     &--title {
-      font-weight: 700;
-      font-size: 3rem;
-      margin-bottom: 0.8rem;
-      @include mq("desktop") {
-        margin-bottom: 2.2rem;
+      display: flex;
+      align-items: center;
+      gap: 52.8rem;
+      &--maintitle{
+        font-weight: 700;
+        font-size: 3rem;
+        margin-bottom: 0.8rem;
+        @include mq("desktop") {
+          margin-bottom: 2.2rem;
+        }
       }
+      
     }
     &--description {
       & > p {

@@ -116,7 +116,7 @@ const Header = () => {
 					<Col className={styles['header__details-left']}>
 						<div className={styles['header__details-left--logo']}>
 							<Image
-								src="/assets/images/cap-logo.png"
+								src="/assets/images/animal_planet_logo.png"
 								preview={false}
 								alt="group"
 							/>
