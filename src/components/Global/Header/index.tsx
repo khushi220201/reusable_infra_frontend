@@ -71,7 +71,7 @@ const Header = () => {
 		dispatch(logoutAction() as any)
 			.unwrap()
 			.then(() => {
-				// navigate('/login');
+				navigate('/login');
 			})
 			.catch((err:any) => {
 				console.log(err);
