@@ -16,7 +16,7 @@ export const AuthLayout = () => {
 			.unwrap()
 			.then((res) => {
 				dispatch(getCompanies(res));
-				navigate('/');
+				navigate(path);
 			})
 			.catch(() => {
 				if (!(path === '/forgot-password' || path === '/reset-password')) {
