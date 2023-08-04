@@ -4,6 +4,7 @@ import { FC } from "react";
 import styles from "./index.module.scss";
 import { RegisterLayoutBodyProps } from "./types";
 import { Link } from "react-router-dom";
+import { LeftOutlined } from "@ant-design/icons";
 
 // register layout body designing
 const RegisterLayoutBody: FC<RegisterLayoutBodyProps> = (props) => {
@@ -35,10 +36,18 @@ const RegisterLayoutBody: FC<RegisterLayoutBodyProps> = (props) => {
         onFinishFailed={onFinishFailed}
       >
         <div className={styles["register-body__top"]}>
-          <h4 className={styles["register-body__top--title"]}>{title}</h4>
+          <div className={styles["register-body__top--title"]}>
+          <h4  className={styles["register-body__top--title--maintitle"]}>{title} </h4>
+          <div>
+          <LeftOutlined /> Back
+          </div>
+          
+          </div>
+          
           {description && (
             <div className={styles["register-body__top--description"]}>
               <p dangerouslySetInnerHTML={{ __html: description }} />
+             
             </div>
           )}
         </div>
