@@ -37,17 +37,17 @@ const RegisterLayoutBody: FC<RegisterLayoutBodyProps> = (props) => {
       >
         <div className={styles["register-body__top"]}>
           <div className={styles["register-body__top--title"]}>
-          <h4  className={styles["register-body__top--title--maintitle"]}>{title} </h4>
-          <div>
-          <LeftOutlined /> Back
+            <h4 className={styles["register-body__top--title--maintitle"]}>
+              {title}{" "}
+            </h4>
+            <div>
+              <LeftOutlined /> Back
+            </div>
           </div>
-          
-          </div>
-          
+
           {description && (
             <div className={styles["register-body__top--description"]}>
               <p dangerouslySetInnerHTML={{ __html: description }} />
-             
             </div>
           )}
         </div>

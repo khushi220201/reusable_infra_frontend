@@ -16,7 +16,7 @@ const UserProfileModal: FC<UserProfileModalProps> = (props) => {
 	const { handleCancel, isProfileModalOpen } = props;
 	const dispatch = useDispatch();
 	const profileData = useSelector((state: any) => state?.userProfile?.data);
-	const { updateLoader } = useSelector((state: any) => state?.userProfile);
+	//const { updateLoader } = useSelector((state: any) => state?.userProfile);
 	const profileImage = profileData.profileImg
 		? [`${process.env.REACT_APP_AWS_BASE_URL}${profileData.profileImg}`]
 		: [];
@@ -219,7 +219,7 @@ const UserProfileModal: FC<UserProfileModalProps> = (props) => {
 					</Row>
 				</div>
 				<hr />
-				<div className="profile_modal_footer">
+				{/* <div className="profile_modal_footer">
 					<Row justify="start" className="footerbtns" gutter={16}>
 						<Col xs={12} md={7} lg={7} sm={8}>
 							{
@@ -243,7 +243,7 @@ const UserProfileModal: FC<UserProfileModalProps> = (props) => {
 							</Button>
 						</Col>
 					</Row>
-				</div>
+				</div> */}
 			</Form>
 		</Modal>
 	);
