@@ -788,20 +788,20 @@ export const UserProfileData = [
 ];
 
 export const permissionObject = [
-	{
-		name: 'Admin',
-		items: [1, 2, 3, 4],
-	},
-	{
-		name: 'Time Activity',
-		items: [5, 6],
-	},
+	// {
+	// 	name: 'Admin',
+	// 	items: [1, 2, 3, 4],
+	// },
+	// {
+	// 	name: 'Time Activity',
+	// 	items: [5, 6],
+	// },
 	{
 		name: 'Settings',
-		items: [7, 8, 9, 10],
+		items: [1,7, 8, 9, 11],
 	},
-	{
-		name: 'Reports',
-		items: [11, 12, 13, 14],
-	},
+	// {
+	// 	name: 'Reports',
+	// 	items: [11, 12, 13, 14],
+	// },
 ];
