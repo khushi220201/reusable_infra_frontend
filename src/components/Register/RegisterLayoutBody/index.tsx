@@ -3,11 +3,13 @@ import { InputWithLabelAndSvgReg } from "components/Global";
 import { FC } from "react";
 import styles from "./index.module.scss";
 import { RegisterLayoutBodyProps } from "./types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LeftOutlined } from "@ant-design/icons";
 
 // register layout body designing
 const RegisterLayoutBody: FC<RegisterLayoutBodyProps> = (props) => {
+
+  const navigate=useNavigate()
   // Inits
   const {
     title,
@@ -37,12 +39,9 @@ const RegisterLayoutBody: FC<RegisterLayoutBodyProps> = (props) => {
       >
         <div className={styles["register-body__top"]}>
           <div className={styles["register-body__top--title"]}>
-            <h4 className={styles["register-body__top--title--maintitle"]}>
-              {title}{" "}
-            </h4>
-            <div>
-              <LeftOutlined /> Back
-            </div>
+          <h4  className={styles["register-body__top--title--maintitle"]}>{title} </h4>
+          <div onClick={()=>{navigate('/login')}} style={{cursor:'pointer'}}>
+          <LeftOutlined /> Back
           </div>
 
           {description && (

@@ -73,7 +73,8 @@ const Header = () => {
 			.then(() => {
 				navigate('/login');
 			})
-			.catch(() => {
+			.catch((err:any) => {
+				console.log(err);
 				navigate('/');
 			});
 	};
@@ -144,7 +145,7 @@ const Header = () => {
 
 						<div
 							className={styles['header__details-right--settings']}
-							onClick={()=>{navigate('/settings')}}
+							onClick={()=>{navigate('/settings/users')}}
 						>
 							<Image
 								src="/assets/images/settings.png"
