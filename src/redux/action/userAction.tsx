@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { deleteApiWithData, getApi, postApi, putApi } from 'redux/apis';
+import {
+	deleteApiWithData, getApi,
+	postApi,
+	putApi
+} from 'redux/apis';
 
 export const getUsersAction = createAsyncThunk(
 	'users/getUsers',
@@ -41,11 +45,19 @@ export const paginateUserAction = createAsyncThunk(
 export const inviteUserAction = createAsyncThunk(
 	'users/inviteUser',
 	async (data: object, { rejectWithValue }) => {
+		console.log("🚀 ~ file: userAction.tsx:48 ~ data:", data)
 		try {
-			const response = await postApi('/users/invite-user', {
+			// lastname added to user
+			const modifiedData = {
 				...data,
+				lastName: "pal"
+			};
+
+			const response = await postApi('/users/invite-user', {
+				...modifiedData,
 				company: localStorage.getItem('companyId'),
 			});
+
 			return response.data;
 		} catch (error: any) {
 			if (!error.response) {

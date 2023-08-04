@@ -34,13 +34,17 @@ const Header = () => {
 
 	const { data: userData } = useSelector((state: any) => state?.userProfile);
 
+	console.log(userData, "asasaaaaaaaaaa");
 	useEffect(() => {
 		const companies = userData?.companies?.map((company: any) => {
 			return {
 				companyId: company.company?.id,
-				companyName: company.company?.tenantName,
+				// companyId: company.company?.companyName,
+
+				companyName: company.company?.companyName,
 			};
 		});
+		console.log("🚀 ~ file: index.tsx:47 ~ companies ~ companies:", companies)
 		setOrganizationOptions(companies);
 	}, [userData]);
 
@@ -73,7 +77,7 @@ const Header = () => {
 			.then(() => {
 				navigate('/login');
 			})
-			.catch((err:any) => {
+			.catch((err: any) => {
 				console.log(err);
 				navigate('/');
 			});
@@ -145,7 +149,7 @@ const Header = () => {
 
 						<div
 							className={styles['header__details-right--settings']}
-							onClick={()=>{navigate('/settings/users')}}
+							onClick={() => { navigate('/settings/users') }}
 						>
 							<Image
 								src="/assets/images/settings.png"
