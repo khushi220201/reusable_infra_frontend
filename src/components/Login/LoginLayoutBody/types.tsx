@@ -14,6 +14,8 @@ export interface LoginLayoutBodyProps {
 	btnXero?:any;
 	rememberMe?:string;
 	isLoading?: boolean;
+	isIntuitLoading?: boolean;
+	isXeroLoading?: boolean;
 	accountText?:string;
 	accountUrl?:string;
 }

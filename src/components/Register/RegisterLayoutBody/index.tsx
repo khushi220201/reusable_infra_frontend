@@ -19,6 +19,8 @@ const RegisterLayoutBody: FC<RegisterLayoutBodyProps> = (props) => {
     btnIntuit,
     btnXero,
     isLoading,
+    isIntuitLoading,
+    isXeroLoading,
     accountText,
     accountUrl,
   } = props;
@@ -93,7 +95,7 @@ const RegisterLayoutBody: FC<RegisterLayoutBodyProps> = (props) => {
 
             // disabled={isLoading}
           >
-            {isLoading ? (
+            {isIntuitLoading ? (
               <img src="assets/gifs/loading-black.gif" height={40} />
             ) : (
               <>{btnIntuit}</>
@@ -106,7 +108,7 @@ const RegisterLayoutBody: FC<RegisterLayoutBodyProps> = (props) => {
             } ${isLoading && "pointer-event-none"}`}
             size="large"
           >
-            {isLoading ? (
+            {isXeroLoading ? (
               <img src="assets/gifs/loading-black.gif" height={40} />
             ) : (
               <>

@@ -15,10 +15,14 @@ const Register = () => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isIntuitLoading, setIsIntuitLoading] = useState(false);
+  const [isXeroLoading, setIsXeroLoading] = useState(false);
 
   const onSubmit = (values: any) => {
     console.log("🚀 ~ file: index.tsx:20 ~ onSubmit ~ values:", values)
     setIsLoading(true);
+    setIsXeroLoading(false);
+    setIsIntuitLoading(false);
     dispatch(registerAction(values) as any)
       .unwrap()
       .then(() => {
@@ -31,6 +35,8 @@ const Register = () => {
       })
       .catch(() => {
         setIsLoading(false);
+        setIsXeroLoading(false);
+        setIsIntuitLoading(false);
         navigate("/register");
       });
   };
@@ -50,6 +56,8 @@ const Register = () => {
         btnXero={"Sign in with Xero"}
         onSubmit={onSubmit}
         isLoading={isLoading}
+        isIntuitLoading={isIntuitLoading}
+        isXeroLoading={isXeroLoading}
         accountText={"Already have an account?"}
         accountUrl={"Login Now!"}
       ></RegisterLayoutBody>

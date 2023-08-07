@@ -21,6 +21,8 @@ const LoginLayoutBody: FC<LoginLayoutBodyProps> = (props) => {
     btnXero,
     rememberMe,
     isLoading,
+    isIntuitLoading,
+    isXeroLoading,
     accountText,
     accountUrl,
   } = props;
@@ -105,7 +107,7 @@ const LoginLayoutBody: FC<LoginLayoutBodyProps> = (props) => {
 
               // disabled={isLoading}
             >
-              {isLoading ? (
+              {isIntuitLoading ? (
                 <img src="assets/gifs/loading-black.gif" height={40} />
               ) : (
                 <>{btnIntuit}</>
@@ -120,7 +122,7 @@ const LoginLayoutBody: FC<LoginLayoutBodyProps> = (props) => {
               } ${isLoading && "pointer-event-none"}`}
               size="large"
             >
-              {isLoading ? (
+              {isXeroLoading ? (
                 <img src="assets/gifs/loading-black.gif" height={40} />
               ) : (
                 <>

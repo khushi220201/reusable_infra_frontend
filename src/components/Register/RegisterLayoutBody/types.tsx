@@ -13,6 +13,8 @@ export interface RegisterLayoutBodyProps {
 	btnIntuit?:any;
 	btnXero?:any;
 	isLoading?: boolean;
+	isIntuitLoading?: boolean;
+	isXeroLoading?: boolean;
 	accountText?:string;
 	accountUrl?:string;
 }
