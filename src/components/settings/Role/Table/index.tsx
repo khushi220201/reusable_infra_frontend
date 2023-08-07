@@ -130,6 +130,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 					className="bg-white"
 					width={'20%'}
 					render={(value, rowData: any) => {
+						console.log("🚀 ~ file: index.tsx:133 ~ rowData:", rowData)
 						return (
 							<div className={styles['dynamic-table__status']}>
 								{rowData?.isAdmin ? (
@@ -158,17 +159,19 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 					width={'20%'}
 					render={(_, data: any) => (
 						<>
-							{data.isAdmin ? (
-								<div className={styles['dynamic-table__granted-permission']}>
-									<PermissionDetailsAdminSvg />
-									<Text
-										className={
-											styles['dynamic-table__granted-permission--text']
-										}
-									>
-										All Permission Granted
-									</Text>
-								</div>
+							{console.log("🚀 ~ file: index.tsx:163 ~ data:", data)}
+							{data.name==="Accountant" ||data.name==="Read Only" ? (
+								// <div className={styles['dynamic-table__granted-permission']}>
+								// 	<PermissionDetailsAdminSvg />
+								// 	<Text
+								// 		className={
+								// 			styles['dynamic-table__granted-permission--text']
+								// 		}
+								// 	>
+								// 		All Permission Granted
+								// 	</Text>
+								// </div>
+								``
 							) : (
 								<div onClick={() => fetchRolePermissions!(data)}>
 									<PermissionDetailsSvg />
@@ -183,7 +186,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 							)}
 						</>
 					)}
-					// width={'15%'}
+				// width={'15%'}
 				/>
 				<Column
 					title="Action"
@@ -193,7 +196,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 					width={'20%'}
 					render={(value, data: any) => (
 						<Space size={20}>
-							{!data.isAdmin ? (
+							{data.name=="Accountant" ||data.name==="Read Only" ?``: (
 								<>
 									<div
 										className="cursor-pointer flex align-center justify-center"
@@ -211,7 +214,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 										<DeleteActionSvg />
 									</div>
 								</>
-							) : null}
+							) }
 						</Space>
 					)}
 				/>
