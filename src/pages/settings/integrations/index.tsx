@@ -1,9 +1,9 @@
-import React from 'react'
+import IntegrationTable from "components/settings/Integration";
 
 export default function Integrations() {
   return (
     <div>
-      Integrations
+      <IntegrationTable />
     </div>
-  )
+  );
 }

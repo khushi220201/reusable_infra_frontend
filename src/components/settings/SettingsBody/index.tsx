@@ -5,6 +5,7 @@ import RoleTable from '../Role';
 import { useDispatch } from 'react-redux';
 import { clearRedux as clearReduxUser } from 'redux/slice/userSlice';
 import { clearRedux as clearReduxRole } from 'redux/slice/roleTableSlice';
+import IntegrationTable from '../Integration';
 // Settings body
 const SettingsBody: FC<SettingsBodyProps> = (props) => {
 	// inits
@@ -21,6 +22,7 @@ const SettingsBody: FC<SettingsBodyProps> = (props) => {
 		<div>
 			{selectedSidebar === 'users' && <UsersTable />}
 			{selectedSidebar === 'roles' && <RoleTable />}
+			{selectedSidebar === 'integrations' && <IntegrationTable />}
 		</div>
 	);
 };
