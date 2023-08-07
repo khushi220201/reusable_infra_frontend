@@ -25,6 +25,8 @@ const LoginLayoutBody: FC<LoginLayoutBodyProps> = (props) => {
     accountUrl,
   } = props;
 
+
+  console.log(title , "title");
   const navigate = useNavigate();
 
   const onFinishFailed = (values: any) => {
