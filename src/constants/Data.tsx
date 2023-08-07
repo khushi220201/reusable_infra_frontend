@@ -57,13 +57,14 @@ export const FORMDATA = {
 					message: 'Please enter your password',
 					validateTrigger: 'onChange',
 				},
-				// {
-				// 	pattern:
-				// 		/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,16}$/,
-				// 	message:
-				// 		'Password should have minimum 8 characters at least 1 uppercase, 1 lowercase, 1 number and 1 special character',
-				// 	validateTrigger: 'onChange',
-				// },
+				{
+					pattern:
+						/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/,
+					message:
+						'Password must contain at least one digit, one lowercase letter, one uppercase letter, and 8 characters long'
+					,
+					validateTrigger: 'onChange',
+				},
 			],
 		},
 	],
@@ -146,13 +147,6 @@ export const FORMDATA = {
 			svg: <PasswordSvg />,
 			placeHolder: '',
 			required: true,
-			// rules: [
-			// 	{
-			// 		required: true,
-			// 		message: 'Please enter your password',
-			// 		validateTrigger: 'onChange',
-			// 	},
-			// ],
 			rules: [
 				{
 					required: true,
@@ -162,15 +156,15 @@ export const FORMDATA = {
 				({ getFieldValue }: any) => ({
 					validator() {
 						const re =
-							// /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
-							/^.{8}$/
+							/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/
 						if (getFieldValue('password') !== undefined) {
 							if (re.test(getFieldValue('password'))) {
 								return Promise.resolve()
 							} else {
 								return Promise.reject(
 									new Error(
-										'Password must be 8 characters atleast ',
+										'Password Should contain 1 digit, 1 lowercase letter, 1 uppercase letter, and 8 characters long'
+										,
 									),
 								)
 							}
@@ -262,9 +256,10 @@ export const FORMDATA = {
 				},
 				{
 					pattern:
-						/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,16}$/,
+						/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/,
 					message:
-						'Password should have minimum 8 characters at least 1 uppercase, 1 lowercase, 1 number and 1 special character',
+						'Password must contain at least one digit, one lowercase letter, one uppercase letter, and 8 characters long'
+					,
 					validateTrigger: 'onChange',
 				},
 			],
@@ -798,7 +793,7 @@ export const permissionObject = [
 	// },
 	{
 		name: 'Settings',
-		items: [1,7, 8, 9, 11],
+		items: [1, 7, 8, 9, 11],
 	},
 	// {
 	// 	name: 'Reports',

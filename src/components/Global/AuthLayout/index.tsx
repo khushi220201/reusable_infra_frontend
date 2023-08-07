@@ -9,14 +9,16 @@ export const AuthLayout = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
 
+	// 
 	const path = window.location.pathname;
+	console.log("🚀 ~ file: index.tsx:13 ~ AuthLayout ~ window.location:", window.location)
 
 	useEffect(() => {
 		dispatch(fetchProfileAction())
 			.unwrap()
 			.then((res) => {
 				dispatch(getCompanies(res));
-				navigate(path);
+				// navigate(path);  because it is redirecting to the reset password page directly without token
 			})
 			.catch(() => {
 				if (!(path === '/forgot-password' || path === '/reset-password')) {
