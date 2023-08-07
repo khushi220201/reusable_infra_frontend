@@ -1,7 +1,10 @@
 import { LoginLayoutBody } from 'components/Login';
 import { FORMDATA } from 'constants/Data';
 import { RegistrationLayout } from 'layouts';
-import { useEffect, useState } from 'react';
+import {
+	useEffect,
+	useState
+} from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { postApi } from 'redux/apis';
 import { toastText } from 'utils/utils';
@@ -11,13 +14,21 @@ const ResetPassword = () => {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 	const token = searchParams.get('token');
+	console.log("🚀 ~ file: index.tsx:17 ~ ResetPassword ~ token:", token)
 	const first = searchParams.get('first');
+	console.log("🚀 ~ file: index.tsx:19 ~ ResetPassword ~ first:", first)
+	const setPassword = searchParams.get('setPassword');
+	console.log("🚀 ~ file: index.tsx:21 ~ ResetPassword ~ setPassword:", setPassword)
 
 	// State Management
 	const [isLoading, setIsLoading] = useState(false);
 
+
+
 	useEffect(() => {
-		verifyToken();
+		if (first === null) {
+			verifyToken();
+		}
 	}, []);
 
 	// Verify Token Api
@@ -35,21 +46,44 @@ const ResetPassword = () => {
 	};
 
 	const onSubmit = (values: any) => {
-		setIsLoading(true);
-		postApi(`/auth/change-password/${token}`, values)
-			.then((res) => {
-				if (first) {
-					toastText('Password generated successfully', 'success');
-				} else {
-					toastText(res?.data?.message, 'success');
-				}
-				setIsLoading(false);
-				navigate('/login');
-			})
-			.catch((err) => {
-				toastText(err?.response?.data?.message, 'error');
-				setIsLoading(false);
-			});
+		if (setPassword === null) {
+			setIsLoading(true);
+			postApi(`/auth/change-password/${token}`, values)
+				.then((res) => {
+					if (first) {
+						toastText('Password generated successfully', 'success');
+					} else {
+						toastText(res?.data?.message, 'success');
+					}
+					setIsLoading(false);
+					navigate('/login');
+				})
+				.catch((err) => {
+					toastText(err?.response?.data?.message, 'error');
+					setIsLoading(false);
+				});
+		}
+		else{
+			console.log('hekk');
+			setIsLoading(true);
+			// changes to set password
+			postApi(`/auth/set-password/${token}`, values)
+				.then((res) => {
+					if (first) {
+						toastText('Password generated successfully', 'success');
+					} else {
+						toastText(res?.data?.message, 'success');
+					}
+					setIsLoading(false);
+					navigate('/login');
+				})
+				.catch((err) => {
+					toastText(err?.response?.data?.message, 'error');
+					setIsLoading(false);
+				});
+		}
+
+
 	};
 
 	// JSX

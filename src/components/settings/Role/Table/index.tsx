@@ -160,7 +160,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 					render={(_, data: any) => (
 						<>
 							{console.log("🚀 ~ file: index.tsx:163 ~ data:", data)}
-							{data.name==="Accountant" ||data.name==="Read Only" ? (
+							{data.name==="Accountant" ||data.name==="Read Only" ||data.name==="Company Admin" ? (
 								// <div className={styles['dynamic-table__granted-permission']}>
 								// 	<PermissionDetailsAdminSvg />
 								// 	<Text
@@ -196,7 +196,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 					width={'20%'}
 					render={(value, data: any) => (
 						<Space size={20}>
-							{data.name=="Accountant" ||data.name==="Read Only" ?``: (
+							{data.name=="Accountant" ||data.name==="Read Only"||data.name==="Company Admin" ?``: (
 								<>
 									<div
 										className="cursor-pointer flex align-center justify-center"
