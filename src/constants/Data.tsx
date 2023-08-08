@@ -806,7 +806,7 @@ export const integrationDataSource: any = [
     key: "1",
     Accounting_Software: {
       connection: "QBO",
-      company: "sendbox",
+      company: "sandbox",
     },
     Ecommerce_Software: {
       connection: "Magento",
@@ -819,7 +819,7 @@ export const integrationDataSource: any = [
     key: "2",
     Accounting_Software: {
       connection: "XERO",
-      company: "sendbox",
+      company: "sandbox",
     },
     Ecommerce_Software: {
       connection: "Shopify",
