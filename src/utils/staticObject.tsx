@@ -75,7 +75,8 @@ const integrationsERPCards = AddUniqueID(
       logo: '/assets/ERP/SAGE.png',
       select: false,
       connect: false,
-      ghost: false
+      ghost: false,
+      titleKey:'Sage'
     },
     {
       title: 'Connect With SAP',
@@ -112,7 +113,8 @@ const integrationsEcommerceCards = AddUniqueID(
       logo: '/assets/Ecommerce/Woo.png',
       select: false,
       connect: false,
-      ghost: false
+      ghost: false,
+      titleKey:'woo'
     },
     {
       title: 'Connect With ShopWare',

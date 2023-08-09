@@ -1,54 +1,45 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Space, Switch, Table } from 'antd';
-import { FC } from 'react';
-import {
-	DeleteActionSvg,
-	SortSvgBottom,
-	SortSvgTop,
-} from 'utils/svgs';
-import './index.scss';
-import { DynamicTableProps } from './types';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from 'redux/store';
-import { editUserAction } from 'redux/action/userAction';
-import { SettingOutlined } from '@ant-design/icons';
+import { Space, Switch, Table } from "antd";
+import { FC } from "react";
+import { DeleteActionSvg, SortSvgBottom, SortSvgTop } from "utils/svgs";
+import "./index.scss";
+import { DynamicTableProps } from "./types";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "redux/store";
+import { editUserAction } from "redux/action/userAction";
+import { SettingOutlined } from "@ant-design/icons";
 
 const DynamicTable: FC<DynamicTableProps> = (props) => {
-	// Inits
-	const { Column } = Table;
-	const {
-		integrationDataSource,
-		setEditSelectedUser,
-		tableRef,
-		performSortHandler,
-	} = props;
+  // Inits
+  const { Column } = Table;
+  const { integrationDataSource, tableRef, showModal, performSortHandler } =
+    props;
 
-	const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
-	const deleteDataHandler = (userObject: any) => {
-		setEditSelectedUser(userObject);
-	};
+  const deleteDataHandler = (userObject: any) => {
+    console.log("userObject: ", userObject);
+  };
 
-	const statusHandler = (value: any, data: any) => {
-		const finalData = {
-			roleId: data?.roleId,
-			userId: data?.userId,
-			status: value,
-			isChangeStatus: true,
-		};
-		dispatch(editUserAction(finalData));
-	};
+  const statusHandler = (value: any, data: any) => {
+    const finalData = {
+      roleId: data?.roleId,
+      userId: data?.userId,
+      status: value,
+      isChangeStatus: true,
+    };
+    dispatch(editUserAction(finalData));
+  };
 
-	// For handle the table change click
-	const tableChangeHandler = (_: any, __: any, data: any) => {
-		performSortHandler!(data.order);
-	};
+  // For handle the table change click
+  const tableChangeHandler = (_: any, __: any, data: any) => {
+    performSortHandler!(data.order);
+  };
 
-	// JSX
-	return (
-		<div className={'dynamic-table'}>
-			
-			<Table
+  // JSX
+  return (
+    <div className={"dynamic-table"}>
+      <Table
         dataSource={integrationDataSource}
         scroll={{ y: "61vh", x: "63vh" }}
         pagination={false}
@@ -162,17 +153,14 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
               <Space size={20}>
                 {!(data.isCompanyAdmin || data.isAdmin) ? (
                   <>
-                    <div
-                      className="cursor-pointer flex align-center justify-center"
-                     
-                    >
+                    <div className="cursor-pointer flex align-center justify-center">
                       <SettingOutlined />
                     </div>
                     <div
                       className="cursor-pointer flex align-center justify-center"
                       onClick={() => {
                         deleteDataHandler(data);
-                        //showModal();
+                        showModal();
                       }}
                     >
                       <DeleteActionSvg />
@@ -184,8 +172,8 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
           }}
         />
       </Table>
-		</div>
-	);
+    </div>
+  );
 };
 
 export default DynamicTable;

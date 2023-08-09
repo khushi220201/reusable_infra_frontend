@@ -6,6 +6,8 @@ import userSlice from './slice/userSlice';
 import roleSlice from './slice/roleSlice';
 import permissionsSlice from './slice/permissionSlice';
 import RoleTableSlice from './slice/roleTableSlice';
+import ConnectionSlice from './slice/connectionSlice';
+
 const store = configureStore({
 	reducer: {
 		auth: loginSlice.reducer,
@@ -15,6 +17,7 @@ const store = configureStore({
 		roles: roleSlice.reducer,
 		permissions: permissionsSlice.reducer,
 		roleTable: RoleTableSlice.reducer,
+		Connection: ConnectionSlice.reducer
 	},
 });
 

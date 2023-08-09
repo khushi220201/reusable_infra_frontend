@@ -466,6 +466,146 @@ export const FORMDATA = {
 			],
 		},
 	],
+    sageIntegrationFields: [
+		{
+			title: 'senderId',
+			id: 'senderId',
+			type: 'text',
+			name: 'senderId',
+			svg: <UserSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your senderId',
+					validateTrigger: 'onChange',
+				}
+			],
+		},
+		{
+			title: 'senderPassword',
+			id: 'senderPassword',
+			type: 'password',
+			name: 'senderPassword',
+			svg: <PasswordSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your Sender Password',
+					validateTrigger: 'onChange',
+				},
+				{
+					pattern:
+						/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/,
+					message:
+						'Password must contain at least one digit, one lowercase letter, one uppercase letter, and 8 characters long'
+					,
+					validateTrigger: 'onChange',
+				},
+			],
+		},
+		{
+			title: 'userId',
+			id: 'userId',
+			type: 'text',
+			name: 'userId',
+			svg: <UserSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your userId',
+					validateTrigger: 'onChange',
+				}
+			],
+		},
+		{
+			title: 'userPassword',
+			id: 'userPassword',
+			type: 'password',
+			name: 'userPassword',
+			svg: <PasswordSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your User Password',
+					validateTrigger: 'onChange',
+				},
+				{
+					pattern:
+						/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/,
+					message:
+						'Password must contain at least one digit, one lowercase letter, one uppercase letter, and 8 characters long'
+					,
+					validateTrigger: 'onChange',
+				},
+			],
+		},
+		{
+			title: 'companyId',
+			id: 'companyId',
+			type: 'text',
+			name: 'companyId',
+			svg: <UserSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your companyId',
+					validateTrigger: 'onChange',
+				}
+			],
+		},
+	],
+	wooIntegrationFields: [
+		{
+			title: 'senderId',
+			id: 'senderId',
+			type: 'text',
+			name: 'senderId',
+			svg: <UserSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your senderId',
+					validateTrigger: 'onChange',
+				}
+			],
+		},
+		{
+			title: 'senderPassword',
+			id: 'senderPassword',
+			type: 'password',
+			name: 'senderPassword',
+			svg: <PasswordSvg />,
+			placeHolder: '',
+			required: true,
+			rules: [
+				{
+					required: true,
+					message: 'Please enter your Sender Password',
+					validateTrigger: 'onChange',
+				},
+				{
+					pattern:
+						/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/,
+					message:
+						'Password must contain at least one digit, one lowercase letter, one uppercase letter, and 8 characters long'
+					,
+					validateTrigger: 'onChange',
+				},
+			],
+		},
+	],
 };
 
 export const userColumns = [

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import styles from "./index.module.scss";
 import {
@@ -10,27 +10,36 @@ import {
 } from "../../../utils/staticObject";
 import IntegrationSelectCard from "components/settings/IntegrationSelectCard/index";
 import { useNavigate } from "react-router-dom";
-//import { setSelectConnectState } from '../../../redux/actions/connectionAction';
+import { setSelectConnectState } from '../../../redux/action/connectionAction';
 import { TableActionHeader } from "components/Global";
+import { useDispatch } from 'react-redux';
+
 
 function SelectConnectionBody() {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
   const [state, setState] = useState({
     integrationsAccountCards,
     integrationsEcommerceCards,
     integrationsERPCards,
     integrationsPaymentCards,
     integrationsMarketplaceCards,
-    connectionCount: 2,
+    connectionCount: 2
   });
 
+  useEffect(() => {
+    console.log('states::>', state);
+    dispatch(setSelectConnectState(state));
+  }, [state]);
   return (
     <div className={styles.intergtaion}>
       <TableActionHeader title={"Select Connections"}>
         <div>
           {localStorage.getItem("companyId") !== "undefined" && (
             <button
-              className={`btn-black ${styles["intergtaion__action"]}`}
+              className={`btn-blue ${styles["intergtaion__action"]}`}
               onClick={() => navigate("/settings/connections")}
             >
               <p>Next</p>
@@ -149,7 +158,7 @@ function SelectConnectionBody() {
           })}
         </Row>
       </div>
-      <div className={"mb-2"}>
+      <div>
         <h2> Payment Gateways</h2>
       </div>
       <div>
@@ -168,7 +177,6 @@ function SelectConnectionBody() {
             return (
               <Col
                 key={index}
-                className="gutter-row"
                 xl={4}
                 lg={4}
                 md={12}
@@ -196,7 +204,7 @@ function SelectConnectionBody() {
         </Row>
       </div>
 
-      <div className={"mb-2"}>
+      <div>
         <h2> Marketplace</h2>
       </div>
       <div>
@@ -215,7 +223,6 @@ function SelectConnectionBody() {
             return (
               <Col
                 key={index}
-                className="gutter-row"
                 xl={4}
                 lg={4}
                 md={12}
