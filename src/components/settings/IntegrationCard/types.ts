@@ -6,5 +6,5 @@ export type IntegrationCardProps = {
   select?: boolean;
   type?: string;
   connect?: boolean;
-  onButtonClick: () => void;
+  onButtonClick?: () => void;
 };

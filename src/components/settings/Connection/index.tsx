@@ -41,23 +41,91 @@ function ConnectionBody() {
   //for formData
 
   const [formData, setFormData] = useState([{}]);
+  const [logo, setLogo] = useState();
+  const [titleKey, setTitleKey] = useState();
+  // const [connected,setConnected] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   //   For cancel operation
   const handleCancel = () => {
+    console.log('handleCancel: ');
     setIsModalOpen(false);
   };
+  //
   const handleOk = () => {
+    console.log('handleOk: ');
     setIsModalOpen(false);
-  };
 
-  // Delete User
-  const integrateHandler = () => {
-    setIsModalOpen(false);
+    // console.log("setSelectState: ", selectState);
+    setSelectState({
+      ...selectState,
+      data: selectState.data.map((d) => {
+        if (d.titleKey === titleKey) {
+          return {
+            ...d,
+            connect: true, // Set the connect property to true
+          };
+        }
+        return d;
+      }),
+    });
+    
   };
 
   const showModal = () => {
     setIsModalOpen(true);
+   
+  };
+
+  const onConnect = (card: any) => {
+    if (card?.connect === false && card?.select === true) {
+      setSelectState((prevState) => {
+        return {
+          ...prevState,
+          data: [
+            ...prevState.data.map((d: any) => {
+              if (d.title === card?.title) {
+                if (d.titleKey === "Sage") {
+                  setIsLoading(true);
+                  setFormData(FORMDATA.sageIntegrationFields);
+                  setTitleKey(card.titleKey);
+                  setLogo(d.logo);
+                  showModal();
+                }
+                if (d.titleKey === "woo") {
+                  setIsLoading(true);
+                  setFormData(FORMDATA.wooIntegrationFields);
+                  setTitleKey(card.titleKey);
+                  setLogo(d.logo);
+                  showModal();
+                }
+              }
+
+              return d;
+            }),
+          ],
+        };
+      });
+    } else {
+      setSelectState((prevState) => {
+        return {
+          ...prevState,
+          data: [
+            ...prevState.data.map((d: any) => {
+              if (d.titleKey === card.titleKey) {
+                return {
+                  ...d,
+                  connect: false,
+                };
+              } else {
+                return d;
+              }
+            }),
+          ],
+        };
+      });
+    }
+    
   };
 
   return (
@@ -90,31 +158,7 @@ function ConnectionBody() {
                 >
                   <IntegrationCard
                     onButtonClick={() => {
-                      setSelectState({
-                        ...selectState,
-                        data: [
-                          ...selectState.data.map((d: any) => {
-                            if (d.title === card?.title) {
-                              
-                              if (d.titleKey === "Sage") {
-                                setIsLoading(true);
-                                setFormData(FORMDATA.sageIntegrationFields);
-                                showModal();
-                              }
-                              if (d.titleKey === "woo") {
-                                setIsLoading(true);
-                                setFormData(FORMDATA.wooIntegrationFields);
-                                showModal();
-                              }
-                              return {
-                                ...d,
-                                connect: !d.connect,
-                              };
-                            }
-                            return d;
-                          }),
-                        ],
-                      });
+                      onConnect(card);
                     }}
                     type={"notConnect"}
                     title={card?.title}
@@ -145,22 +189,6 @@ function ConnectionBody() {
                     xs={24}
                   >
                     <IntegrationCard
-                      onButtonClick={() => {
-                        setSelectState({
-                          ...selectState,
-                          data: [
-                            ...selectState.data.map((d: any) => {
-                              if (d.title === card?.title) {
-                                return {
-                                  ...d,
-                                  connect: !d.connect,
-                                };
-                              }
-                              return d;
-                            }),
-                          ],
-                        });
-                      }}
                       type={"connect"}
                       title={card?.title}
                       connect={card?.connect}
@@ -178,10 +206,10 @@ function ConnectionBody() {
         handleCancel={handleCancel}
         handleOk={handleOk}
         isModalOpen={isModalOpen}
-        integrateHandler={integrateHandler}
         formData={formData}
         isLoading={isLoading}
         title={"Integration"}
+        logo={logo}
       />
     </div>
   );

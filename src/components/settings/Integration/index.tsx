@@ -1,15 +1,15 @@
-import { Loader, TableActionHeader } from "components/Global";
+import { TableActionHeader } from "components/Global";
 import { integrationDataSource } from "constants/Data";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
+import ConfirmDelete from "components/Global/confirmDeleteModel";
 import { useNavigate } from "react-router-dom";
 import { getUsersAction, paginateUserAction } from "redux/action/userAction";
 import { AppDispatch } from "redux/store";
 import { AddSvg } from "utils/svgs";
 import DynamicTable from "./Table";
 import styles from "./index.module.scss";
-import ConfirmDelete from "components/Global/confirmDeleteModel";
 
 // Creating the list of user table
 const IntegrationTable = () => {
@@ -19,7 +19,6 @@ const IntegrationTable = () => {
 
   const tableRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading,fistTimeFetchLoading } = useSelector((state: any) => state?.users);
 
   const navigate = useNavigate();
 
@@ -101,52 +100,46 @@ const IntegrationTable = () => {
   };
 
   //   For open the model
-	const showModal = () => {
-		setIsModalOpen(true);
-	};
-
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
 
   // JSX
   return (
     <>
       <div className={styles["integration-table"]}>
-        {!fistTimeFetchLoading ? (
-          <div>
-            <TableActionHeader title={"Integrations"}>
-              <div className={styles["integration-table__action"]}>
-                {localStorage.getItem("companyId") !== "undefined" && (
-                  <button
-                    className={`btn-blue ${styles["integration-table__action--button"]}`}
-                    onClick={() => navigate("/settings/selectconnection")}
-                  >
-                    <AddSvg />
-                    <p>Add New Connections</p>
-                  </button>
-                )}
-              </div>
-            </TableActionHeader>
-            <div>
-              <DynamicTable
-                integrationDataSource={integrationDataSource}
-                paginationChangeHandler={paginationChangeHandler}
-                currentPage={currentPage}
-                totalRecords={10}
-                tableRef={tableRef}
-                showModal={showModal}
-                performSortHandler={performSortHandler}
-              />
+        <div>
+          <TableActionHeader title={"Integrations"}>
+            <div className={styles["integration-table__action"]}>
+              {localStorage.getItem("companyId") !== "undefined" && (
+                <button
+                  className={`btn-blue ${styles["integration-table__action--button"]}`}
+                  onClick={() => navigate("/settings/selectconnection")}
+                >
+                  <AddSvg />
+                  <p>Add New Connections</p>
+                </button>
+              )}
             </div>
+          </TableActionHeader>
+          <div>
+            <DynamicTable
+              integrationDataSource={integrationDataSource}
+              paginationChangeHandler={paginationChangeHandler}
+              currentPage={currentPage}
+              totalRecords={10}
+              tableRef={tableRef}
+              showModal={showModal}
+              performSortHandler={performSortHandler}
+            />
           </div>
-        ) : (
-          <Loader />
-        )}
+        </div>
       </div>
       <ConfirmDelete
         handleCancel={handleCancel}
         handleOk={handleOk}
         isModalOpen={isModalOpen}
         deleteHandler={deleteHandler}
-        isLoading={isLoading}
       />
     </>
   );

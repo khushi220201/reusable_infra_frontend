@@ -8,5 +8,5 @@ export interface IntegrationModalProps {
   isLoading?: boolean;
   title: string;
   formData: any;
-  
+  logo:any;
 }
