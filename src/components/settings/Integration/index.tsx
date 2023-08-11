@@ -10,7 +10,7 @@ import { AppDispatch } from "redux/store";
 import { AddSvg } from "utils/svgs";
 import DynamicTable from "./Table";
 import styles from "./index.module.scss";
-import { getRoleActionTable } from "redux/action/roleTableAction";
+// import { getRoleActionTable } from "redux/action/roleTableAction";
 
 // Creating the list of user table
 const IntegrationTable = () => {
