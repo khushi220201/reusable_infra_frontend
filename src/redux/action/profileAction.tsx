@@ -2,10 +2,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getApi, putApiNoHeader } from 'redux/apis';
 
 export const fetchProfileAction = createAsyncThunk(
+
 	'auth/fetchProfile',
 	async (_, { rejectWithValue }) => {
 		try {
 			const response = await getApi('/auth/fetch-profile');
+
 			return response.data;
 		} catch (error: any) {
 			if (!error.response) {

@@ -8,6 +8,7 @@ import { useState } from "react";
 // import { fetchProfileAction } from "redux/action/profileAction";
 import { RegisterLayoutBody } from "components/Register";
 import { registerAction } from "redux/slice/registerSlice";
+import { toastText } from "utils/utils";
 
 // Register page
 const Register = () => {
@@ -19,20 +20,16 @@ const Register = () => {
   const [isXeroLoading, setIsXeroLoading] = useState(false);
 
   const onSubmit = (values: any) => {
-    console.log("🚀 ~ file: index.tsx:20 ~ onSubmit ~ values:", values)
     setIsLoading(true);
     setIsXeroLoading(false);
     setIsIntuitLoading(false);
     dispatch(registerAction(values) as any)
       .unwrap()
-      .then(() => {
-        // dispatch(fetchProfileAction() as any).then(() => {
-        //   setIsLoading(false);
-        //   dispatch(getCompanies(res));
-        // });
-        navigate("/login");
-
-      })
+     .then((res : any) => {
+				toastText(res?.message, 'success');
+				setIsLoading(false);
+				navigate('/login');
+			})
       .catch(() => {
         setIsLoading(false);
         setIsXeroLoading(false);

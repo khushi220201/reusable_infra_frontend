@@ -8,11 +8,10 @@ import { AppDispatch } from 'redux/store';
 export const AuthLayout = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
+	console.log('navigate: ', navigate);
 
 	// 
 	const path = window.location.pathname;
-	console.log("🚀 ~ file: index.tsx:13 ~ AuthLayout ~ window.location:", window.location)
-
 	useEffect(() => {
 		dispatch(fetchProfileAction())
 			.unwrap()
@@ -22,7 +21,7 @@ export const AuthLayout = () => {
 			})
 			.catch(() => {
 				if (!(path === '/forgot-password' || path === '/reset-password')) {
-					navigate('/login');
+					// navigate('/login');  //For Verify Email
 				}
 			});
 	}, []);

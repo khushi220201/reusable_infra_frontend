@@ -45,8 +45,6 @@ const registerSlice = createSlice({
 			state.error = action.payload;
 			toastText(action?.payload?.message, 'error');
 		});
-
-
 	},
 });
 
