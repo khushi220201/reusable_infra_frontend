@@ -154,7 +154,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
                 {!(data.isCompanyAdmin || data.isAdmin) ? (
                   <>
                     <div className="cursor-pointer flex align-center justify-center">
-                      <SettingOutlined />
+                      <SettingOutlined/>
                     </div>
                     <div
                       className="cursor-pointer flex align-center justify-center"

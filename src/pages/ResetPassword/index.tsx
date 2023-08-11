@@ -1,6 +1,6 @@
 import { LoginLayoutBody } from 'components/Login';
 import { FORMDATA } from 'constants/Data';
-import { RegistrationLayout } from 'layouts';
+import { LoginLayout } from 'layouts';
 import {
 	useEffect,
 	useState
@@ -88,7 +88,7 @@ const ResetPassword = () => {
 
 	// JSX
 	return (
-		<RegistrationLayout>
+		<LoginLayout>
 			<LoginLayoutBody
 				title={first == 'true' ? 'Set Password' : 'Reset Password'}
 				formData={FORMDATA.resetPassword}
@@ -98,7 +98,7 @@ const ResetPassword = () => {
 				redirectUrl="/login"
 				redirectText="Back to login"
 			></LoginLayoutBody>
-		</RegistrationLayout>
+		</LoginLayout>
 	);
 };
 

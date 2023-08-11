@@ -48,12 +48,12 @@ function ConnectionBody() {
   const [isLoading, setIsLoading] = useState(false);
   //   For cancel operation
   const handleCancel = () => {
-    console.log('handleCancel: ');
+    console.log("handleCancel: ");
     setIsModalOpen(false);
   };
   //
   const handleOk = () => {
-    console.log('handleOk: ');
+    console.log("handleOk: ");
     setIsModalOpen(false);
 
     // console.log("setSelectState: ", selectState);
@@ -69,12 +69,10 @@ function ConnectionBody() {
         return d;
       }),
     });
-    
   };
 
   const showModal = () => {
     setIsModalOpen(true);
-   
   };
 
   const onConnect = (card: any) => {
@@ -125,7 +123,6 @@ function ConnectionBody() {
         };
       });
     }
-    
   };
 
   return (

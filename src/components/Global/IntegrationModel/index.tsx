@@ -1,5 +1,5 @@
 import { Form, Input, Modal } from "antd";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { CloseSvg } from "utils/svgs";
 import styles from "./index.module.scss";
 import { IntegrationModalProps } from "./types";
@@ -7,15 +7,24 @@ import { IntegrationModalProps } from "./types";
 // IntegrationModal popup
 const IntegrationModal: FC<IntegrationModalProps> = (props) => {
   // Inits
-  const {
-    handleCancel,
-    handleOk,
-    isModalOpen,
-    title,
-    logo,
-    formData,
-  } = props;
-  //const { singleUserInput, disabled } = props;
+  const { handleCancel, handleOk, isModalOpen, title, logo, formData } = props;
+  const [form] = Form.useForm(); // Ant Design Form instance
+  const [formValues, setFormValues] = useState({});
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  const handleFormReset = () => {
+    form.resetFields(); // Reset form fields
+    setFormValues({}); // Reset controlled form values
+  };
+
+  const handleFormSubmit = async (values: any) => {
+    console.log('values: ', values);
+    await handleOk(); // Handle submission logic
+    handleFormReset(); // Reset form fields and values after submission
+  };
 
   //   JSX
   return (
@@ -28,14 +37,22 @@ const IntegrationModal: FC<IntegrationModalProps> = (props) => {
       }
       open={isModalOpen}
       onOk={handleOk}
-      onCancel={handleCancel}
+      onCancel={() => {
+        handleCancel();
+        handleFormReset(); // Reset form fields and values when modal is closed
+      }}
       centered={true}
       width={500}
       closeIcon={<CloseSvg />}
       footer={null}
     >
       <div>
-        <Form onFinish={handleOk}>
+        <Form
+          form={form}
+          initialValues={formValues}
+          onFinish={handleFormSubmit}
+          onFinishFailed={onFinishFailed}
+        >
           {formData?.map((fieldData: any, index: any) => (
             <div className={styles["input-icon"]} key={index}>
               <div className={styles["input-icon__title"]}>
@@ -52,7 +69,6 @@ const IntegrationModal: FC<IntegrationModalProps> = (props) => {
                 </label>
               </div>
               <div className={styles["input-icon__form"]}>
-                
                 <Form.Item name={fieldData.name} rules={fieldData.rules}>
                   {fieldData.type === "text" || fieldData.type === "number" ? (
                     <Input
@@ -77,20 +93,16 @@ const IntegrationModal: FC<IntegrationModalProps> = (props) => {
           <div key={"wrapper"} className={styles["integration-model__button"]}>
             <button
               type="submit"
-              //key="ok"
               className={`${styles["integration-model__button--save"]} ${styles["integration-model__button--btn"]}`}
-              //onClick={handleOk}
             >
               Save
-              {/* {isLoading
-              ? // <img src="assets/gifs/loading-black.gif" height={40} />
-                "Save"
-              : "Save"} */}
             </button>
             <button
-            type="button"
-              key="cancel"
-              onClick={handleCancel}
+              type="button"
+              onClick={() => {
+                handleCancel();
+                handleFormReset(); // Reset form fields and values when Cancel is clicked
+              }}
               className={`${styles["integration-model__button--cancel"]} ${styles["integration-model__button--btn"]}`}
             >
               Cancel
