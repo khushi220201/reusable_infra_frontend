@@ -265,7 +265,7 @@ const RoleTable = () => {
 							<div className={styles['role-table__action']}>
 								{localStorage.getItem('companyId') !== 'undefined' && (
 									<button
-										className={`btn-black ${styles['role-table__action--button']}`}
+										className={`btn-blue ${styles['role-table__action--button']}`}
 										onClick={openDrawerHandler}
 									>
 										<AddSvg />

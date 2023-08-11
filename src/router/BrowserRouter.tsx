@@ -8,6 +8,8 @@ import Register from 'pages/Register';
 import { createBrowserRouter } from 'react-router-dom';
 import Integrations from 'pages/settings/integrations';
 import Subcription from 'pages/settings/subscription';
+import SelectConnection from 'pages/settings/SelectConnection';
+import Connection from 'pages/settings/Connection';
 
 const router = createBrowserRouter([
 	{
@@ -42,6 +44,16 @@ const router = createBrowserRouter([
 						
 						path: '/settings/integrations',
 						element: <Integrations />
+					},
+					{
+						
+						path: '/settings/selectconnection',
+						element: <SelectConnection />
+					},
+					{
+						
+						path: '/settings/connections',
+						element: <Connection />
 					},
 					{
 						

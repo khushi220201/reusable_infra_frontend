@@ -285,7 +285,7 @@ const UsersTable = () => {
 							<div className={styles['user-table__action']}>
 								{localStorage.getItem('companyId') !== 'undefined' && (
 									<button
-										className={`btn-black ${styles['user-table__action--button']}`}
+										className={`btn-blue ${styles['user-table__action--button']}`}
 										onClick={openDrawerHandler}
 									>
 										<AddSvg />

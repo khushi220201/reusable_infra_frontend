@@ -24,7 +24,7 @@ body {
 }
 
 /* Global css */
-.btn-black {
+.btn-blue {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -48,7 +48,7 @@ body {
 	gap: 10px;
 }
 
-.btn-black:hover {
+.btn-blue:hover {
 	color: #fff !important;
 }
 

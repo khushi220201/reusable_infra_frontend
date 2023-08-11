@@ -1,0 +1,22 @@
+.integration {
+  &__card {
+    margin-bottom: 15px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    img {
+      // height: 100px !important;
+      max-height: 30px !important;
+      max-width: 187px !important;
+    }
+    &__company {
+      padding-bottom: 10px;
+      font-weight: 700;
+    }
+  }
+  &__active {
+    border: 3px dot-dash red !important;
+  }
+}

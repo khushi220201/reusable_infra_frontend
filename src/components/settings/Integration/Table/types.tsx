@@ -5,9 +5,9 @@ export type DynamicTableProps = {
 	currentPage: number;
 	totalRecords: number;
 	showModal: () => void;
-	openDrawerHandler: () => void;
-	setDrawerInfoHandler: (title: string) => void;
-	setEditSelectedUser: any;
+	openDrawerHandler?: () => void;
+	setDrawerInfoHandler?: (title: string) => void;
+	setSettingHandler?: any;
 	tableRef?: any;
 	performSortHandler?: (type: string) => void;
 };

@@ -18,6 +18,8 @@ const Login = () => {
   const [isXeroLoading, setIsXeroLoading] = useState(false);
 
   const onSubmit = (values: any) => {
+    console.log("values: ", values);
+
     setIsLoading(true);
     setIsXeroLoading(false);
     setIsIntuitLoading(false);

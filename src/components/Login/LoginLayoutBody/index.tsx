@@ -27,8 +27,7 @@ const LoginLayoutBody: FC<LoginLayoutBodyProps> = (props) => {
     accountUrl,
   } = props;
 
-
-  console.log(title , "title");
+  console.log(title, "title");
   const navigate = useNavigate();
 
   const onFinishFailed = (values: any) => {
@@ -43,6 +42,9 @@ const LoginLayoutBody: FC<LoginLayoutBodyProps> = (props) => {
         name="basic"
         onFinish={onSubmit}
         onFinishFailed={onFinishFailed}
+        initialValues={{
+          rememberMe: false, // Set default value for rememberMe
+        }}
       >
         <div className={styles["login-body__top"]}>
           <h4 className={styles["login-body__top--title"]}>{title}</h4>
@@ -64,11 +66,13 @@ const LoginLayoutBody: FC<LoginLayoutBodyProps> = (props) => {
         </div>
         <div className={styles["login-body__remberme-forgot"]}>
           {rememberMe && (
-            <Checkbox
-              className={styles["login-body__remberme-forgot--remeber-me"]}
-            >
-              {rememberMe}
-            </Checkbox>
+            <Form.Item name="rememberMe" valuePropName="checked">
+              <Checkbox
+                className={styles["login-body__remberme-forgot--remeber-me"]}
+              >
+                {rememberMe}
+              </Checkbox>
+            </Form.Item>
           )}
 
           <p

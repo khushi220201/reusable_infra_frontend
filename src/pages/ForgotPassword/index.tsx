@@ -1,6 +1,6 @@
 import { LoginLayoutBody } from 'components/Login';
 import { FORMDATA } from 'constants/Data';
-import { RegistrationLayout } from 'layouts';
+import { LoginLayout } from 'layouts';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postApi } from 'redux/apis';
@@ -29,7 +29,7 @@ const ForgotPassword = () => {
 
 	// JSX
 	return (
-		<RegistrationLayout>
+		<LoginLayout>
 			<LoginLayoutBody
 				title="Forgot Password"
 				formData={FORMDATA.forgotPassword}
@@ -42,7 +42,7 @@ send reset password link there."
 				onSubmit={onSubmit}
 				isLoading={isLoading}
 			></LoginLayoutBody>
-		</RegistrationLayout>
+		</LoginLayout>
 	);
 };
 

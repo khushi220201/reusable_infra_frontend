@@ -46,12 +46,16 @@ const UserSlice = createSlice({
 		builder.addCase(getUsersAction.rejected, (state, action: any) => {
 			state.error = action.payload;
 			state.isLoading = false;
+			state.fistTimeFetchLoading = false;
+
 		});
 
 		//Paginate Users
 		builder.addCase(paginateUserAction.fulfilled, (state, action) => {
 			state.data = action?.payload;
 			state.isLoading = false;
+			state.fistTimeFetchLoading = false;
+
 		});
 
 		// Invite New User
