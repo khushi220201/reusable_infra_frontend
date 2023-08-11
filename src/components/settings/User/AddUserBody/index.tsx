@@ -25,8 +25,10 @@ const AddUserBody: FC<SideDrawerBodyProps> = (props) => {
 	};
 
 	const dispatch = useDispatch<AppDispatch>();
+	const state = useSelector((state :any)=>  state)
+	console.log(state, "stat");
 	const { data: roleData } = useSelector((state: any) => state?.roles);
-
+	console.log("🚀 ~ file: index.tsx:29 ~ roleData:", roleData)
 	const { isLoading } = useSelector((state: any) => state?.users);
 
 	useEffect(() => {

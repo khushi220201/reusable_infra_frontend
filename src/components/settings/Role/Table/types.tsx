@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-export type DynamicTableProps = {
+export interface DynamicTableProps{
 	roleColumns: any;
 	roleDataSource: any;
 	paginationChangeHandler: (pageNo: number) => void;
@@ -17,5 +17,5 @@ export type DynamicTableProps = {
 	setEditSelectedRole: any;
 	fetchRolePermissions?: (data: any) => void;
 	tableRef?: any;
-	performSortHandler?: (sortValue: string) => void;
-};
+	performSortHandler?: (sortValue: string , current : number) => void;
+}

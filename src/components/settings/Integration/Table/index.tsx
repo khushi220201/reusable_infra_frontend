@@ -60,7 +60,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 			<Table
 				dataSource={integrationDataSource}
 				scroll={{ y: '61vh', x: '63vh' }}
-				pagination={false}
+				// pagination={true}
 				className="table-global"
 				ref={tableRef}
 				onChange={tableChangeHandler}

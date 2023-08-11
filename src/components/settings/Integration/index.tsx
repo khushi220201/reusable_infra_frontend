@@ -7,7 +7,6 @@ import ConfirmDelete from "components/Global/confirmDeleteModel";
 import { integrationDataSource } from "constants/Data";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRoleAction } from "redux/action/roleActions";
 import {
   deleteUserAction,
   getUsersAction,
@@ -19,6 +18,7 @@ import { formatPhoneNumber } from "utils/utils";
 import AddIntegrationBody from "./AddIntegrationBody";
 import DynamicTable from "./Table";
 import styles from "./index.module.scss";
+import { getRoleActionTable } from "redux/action/roleTableAction";
 
 // Creating the list of user table
 const IntegrationTable = () => {
@@ -78,7 +78,7 @@ const IntegrationTable = () => {
       })
     );
     dispatch(
-      getRoleAction({
+      getRoleActionTable({
         url: `page=${1}&limit=1000000`,
       })
     );
@@ -224,7 +224,7 @@ const IntegrationTable = () => {
                 openDrawerHandler={openDrawerHandler}
                 setDrawerInfoHandler={setDrawerInfoHandler}
                 setEditSelectedUser={setEditSelectedUser}
-                tableRef={tableRef}
+                // tableRef={tableRef}
                 performSortHandler={performSortHandler}
               />
             </div>

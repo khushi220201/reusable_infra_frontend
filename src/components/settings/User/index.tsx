@@ -5,13 +5,14 @@ import {
 } from 'components/Global';
 import ConfirmDelete from 'components/Global/confirmDeleteModel';
 import { userColumns } from 'constants/Data';
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, 
+	// useCallback, 
+	useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRoleAction } from 'redux/action/roleActions';
 import {
 	deleteUserAction,
 	getUsersAction,
-	paginateUserAction,
+	// paginateUserAction,
 } from 'redux/action/userAction';
 import { AppDispatch } from 'redux/store';
 import { AddSvg } from 'utils/svgs';
@@ -19,15 +20,18 @@ import { formatPhoneNumber } from 'utils/utils';
 import AddUserBody from './AddUserBody';
 import DynamicTable from './Table';
 import styles from './index.module.scss';
+import { getRoleAction } from 'redux/action/roleActions';
+// import { getRoleActionTable } from 'redux/action/roleTableAction';
 
 // Creating the list of user table
 const UsersTable = () => {
 	const [drawerAnimation, setDrawerAnimation] = useState<boolean>(false);
 	const [isSideDrawerOpen, setSideDrawerOpen] = useState<boolean>(false);
-	const [isInViewPort, setIsInViewPort] = useState<boolean>(false);
+	// const [isInViewPort, setIsInViewPort] = useState<boolean>(false);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchValue, setSearchValue] = useState('');
 	const [filterValue, setFilterValue] = useState('');
+	const [sort, setSort] = useState('asc');
 	const [drawerInfo, setDrawerInfo] = useState({
 		drawerTitle: 'Users',
 	});
@@ -39,7 +43,7 @@ const UsersTable = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const {
 		data: userData,
-		count,
+		// count,
 		isLoading,
 		fistTimeFetchLoading,
 	} = useSelector((state: any) => state?.users);
@@ -47,6 +51,14 @@ const UsersTable = () => {
 	useEffect(() => {
 		fetchUsers();
 	}, []);
+
+	const totalRecords = useSelector((state: any) => state?.users?.count)
+
+
+	// setRecords(totalRecords)
+	console.log("🚀 ~ file: index.tsx:53 ~ RoleTable ~ totalData:", totalRecords)
+
+
 
 	useEffect(() => {
 		const data = userData?.map((user: any) => {
@@ -104,8 +116,17 @@ const UsersTable = () => {
 	};
 
 	// Handle the pagination for the table
-	const paginationChangeHandler = (pageNo: number) => {
+	const paginationChangeHandler = (pageNo: number ) => {
 		setCurrentPage(pageNo);
+		dispatch(
+				getUsersAction({
+					page: pageNo,
+					limit: 10,
+					sort: 'firstName',
+					type: sort,
+				})
+			);
+
 	};
 
 	// For perform the search operation
@@ -121,7 +142,7 @@ const UsersTable = () => {
 		);
 
 		setSearchValue(value);
-		setCurrentPage(1);
+		// setCurrentPage(1);
 	};
 
 	// Perform Filter
@@ -180,59 +201,61 @@ const UsersTable = () => {
 	};
 
 	//adding body to scroll to table body Infinite scroll
-	const scrollHandler = useCallback((event: any) => {
-		const { currentTarget } = event;
-		const tableBody = currentTarget?.querySelector('tbody');
-		if (
-			tableBody!.getBoundingClientRect().top +
-				tableBody.getBoundingClientRect().height <
-			screen.height - 100
-		) {
-			setIsInViewPort(true);
-		} else {
-			setIsInViewPort(false);
-		}
-	}, []);
+	// const scrollHandler = useCallback((event: any) => {
+	// 	const { currentTarget } = event;
+	// 	const tableBody = currentTarget?.querySelector('tbody');
+	// 	if (
+	// 		tableBody!.getBoundingClientRect().top +
+	// 			tableBody.getBoundingClientRect().height <
+	// 		screen.height - 100
+	// 	) {
+	// 		setIsInViewPort(true);
+	// 	} else {
+	// 		setIsInViewPort(false);
+	// 	}
+	// }, []);
 
-	useEffect(() => {
-		if (isInViewPort && formateData.length < count) {
-			setCurrentPage((prev) => prev + 1);
+	// useEffect(() => {
+	// 	if (isInViewPort && formateData.length < count) {
+	// 		setCurrentPage((prev) => prev + 1);
 
-			let query;
-			if (filterValue == 'all') {
-				query = {
-					page: currentPage + 1,
-					limit: 10,
-					search: searchValue,
-					sort: 'asc',
-				};
-			} else {
-				query = {
-					page: currentPage + 1,
-					limit: 10,
-					search: searchValue,
-					sort: 'asc',
-					filer: filterValue,
-				};
-			}
+	// 		let query;
+	// 		if (filterValue == 'all') {
+	// 			query = {
+	// 				page: currentPage + 1,
+	// 				limit: 10,
+	// 				search: searchValue,
+	// 				sort: 'asc',
+	// 			};
+	// 		} else {
+	// 			query = {
+	// 				page: currentPage + 1,
+	// 				limit: 10,
+	// 				search: searchValue,
+	// 				sort: 'asc',
+	// 				filer: filterValue,
+	// 			};
+	// 		}
 
-			// if (filterValue !== 'all') {
-			// 	query['filter'] = filterValue;
-			// }
+	// 		// if (filterValue !== 'all') {
+	// 		// 	query['filter'] = filterValue;
+	// 		// }
 
-			dispatch(paginateUserAction(query));
-			// paginateRole(
-			// 	`page=${currentPage + 1}&limit=10&search=${searchValue}&sort=roleName`
-			// )
-		}
-	}, [isInViewPort]);
+	// 		dispatch(paginateUserAction(query));
+	// 		// paginateRole(
+	// 		// 	`page=${currentPage + 1}&limit=10&search=${searchValue}&sort=roleName`
+	// 		// )
+	// 	}
+	// }, [isInViewPort]);
 
 	// For perform the sorting operation
-	const performSortHandler = (type: string) => {
-		setCurrentPage(1);
+	const performSortHandler = (type: string ,current : number) => {
+		console.log("🚀 ~ file: index.tsx:243 ~ performSortHandler ~ type:", type)
+		// setCurrentPage(1);
+		setSort(type === 'ascend' ? 'asc' : 'desc');
 		dispatch(
 			getUsersAction({
-				page: 1,
+				page: current,
 				limit: 10,
 				sort: 'firstName',
 				type: type === 'ascend' ? 'asc' : 'desc',
@@ -240,17 +263,17 @@ const UsersTable = () => {
 		);
 	};
 
-	useEffect(() => {
-		if (tableRef.current) {
-			const tableBody = tableRef.current
-				? tableRef.current?.querySelector('.ant-table-body')
-				: null;
-			// if (tableBody) {
-			tableBody?.addEventListener('scroll', scrollHandler);
-			return () => tableBody?.removeEventListener('scroll', scrollHandler);
-			// }
-		}
-	}, [tableRef.current]);
+	// useEffect(() => {
+	// 	if (tableRef.current) {
+	// 		const tableBody = tableRef.current
+	// 			? tableRef.current?.querySelector('.ant-table-body')
+	// 			: null;
+	// 		// if (tableBody) {
+	// 		tableBody?.addEventListener('scroll', scrollHandler);
+	// 		return () => tableBody?.removeEventListener('scroll', scrollHandler);
+	// 		// }
+	// 	}
+	// }, [tableRef.current]);
 
 	// JSX
 	return (
@@ -277,7 +300,7 @@ const UsersTable = () => {
 								userColumns={userColumns}
 								paginationChangeHandler={paginationChangeHandler}
 								currentPage={currentPage}
-								totalRecords={10}
+								totalRecords={totalRecords}
 								performSearchHandler={performSearchHandler}
 								searchValue={searchValue}
 								showModal={showModal}

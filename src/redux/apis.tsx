@@ -18,6 +18,7 @@ const apiConfig = (flag = false) => {
 };
 
 export const getApi = (url?: string, params?: any) => {
+	console.log("🚀 ~ file: apis.tsx:21 ~ getApi ~ params:", params)
 	return axios.get(`${endPoint}${url}`, {
 		params: params,
 		...apiConfig(),

@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-export type DynamicTableProps = {
+export interface DynamicTableProps{
 	userColumns: any;
 	userDataSource: any;
 	paginationChangeHandler: (pageNo: number) => void;
@@ -15,5 +15,5 @@ export type DynamicTableProps = {
 	setDrawerInfoHandler: (title: string) => void;
 	setEditSelectedUser: any;
 	tableRef?: any;
-	performSortHandler?: (type: string) => void;
-};
+	performSortHandler?: (type: string ,current : number) => void;
+}

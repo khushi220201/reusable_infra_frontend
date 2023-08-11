@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 // import { fetchProfileAction } from "redux/action/profileAction";
 import { RegisterLayoutBody } from "components/Register";
+import { getApi } from "redux/apis";
+import { toastText } from "utils/utils";
 import { registerAction } from "redux/slice/registerSlice";
 
 // Register page
@@ -23,22 +25,63 @@ const Register = () => {
     setIsLoading(true);
     setIsXeroLoading(false);
     setIsIntuitLoading(false);
-    dispatch(registerAction(values) as any)
-      .unwrap()
-      .then(() => {
-        // dispatch(fetchProfileAction() as any).then(() => {
-        //   setIsLoading(false);
-        //   dispatch(getCompanies(res));
-        // });
-        navigate("/login");
 
+    const { email } = values
+    console.log("🚀 ~ file: index.tsx:28 ~ onSubmit ~ email:", email)
+
+
+    getApi(`/users/get-email`, { email })
+      .then((res) => {
+        console.log("🚀 ~ file: index.tsx:34 ~ .then ~ res:", res.data.data)
+        if (res.data.data === null) {
+          alert("enter")
+          dispatch(registerAction(values) as any)
+            .unwrap()
+            .then(() => {
+
+              navigate("/login");
+
+            })
+            .catch(() => {
+              setIsLoading(false);
+              setIsXeroLoading(false);
+              setIsIntuitLoading(false);
+              navigate("/register");
+            });
+
+            toastText("Registration successfully, Please check your inbox to verify your email. ", 'success');
+        }
+
+        else {
+          toastText("User Already exist", 'error');
+          setIsLoading(false);
+        }
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log("🚀 ~ file: index.tsx:38 ~ onSubmit ~ err:", err)
+        toastText(err?.response?.data?.message, 'error');
         setIsLoading(false);
-        setIsXeroLoading(false);
-        setIsIntuitLoading(false);
-        navigate("/register");
       });
+
+    // if (data === null){
+    //   dispatch(registerAction(values) as any)
+    // .unwrap()
+    // .then(() => {
+    //   // dispatch(fetchProfileAction() as any).then(() => {
+    //   //   setIsLoading(false);
+    //   //   dispatch(getCompanies(res));
+    //   // });
+    //   navigate("/login");
+
+    // })
+    // .catch(() => {
+    //   setIsLoading(false);
+    //   setIsXeroLoading(false);
+    //   setIsIntuitLoading(false);
+    //   navigate("/register");
+    // });
+    // }
+
   };
   // JSX
   return (

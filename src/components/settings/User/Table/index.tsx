@@ -27,8 +27,11 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 		openDrawerHandler,
 		setDrawerInfoHandler,
 		setEditSelectedUser,
-		tableRef,
+		// tableRef,
 		performSortHandler,
+		totalRecords,
+		currentPage,
+		paginationChangeHandler
 	} = props;
 
 	const dispatch = useDispatch<AppDispatch>();
@@ -54,13 +57,16 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 	};
 
 	// For handle the table change click
-	const tableChangeHandler = (_: any, __: any, data: any) => {
-		performSortHandler!(data.order);
+	const tableChangeHandler = (d1: any, d2: any, data: any) => {
+		console.log("🚀 ~ file: index.tsx:61 ~ tableChangeHandler ~ d2:", d2)
+		console.log("🚀 ~ file: index.tsx:61 ~ tableChangeHandler ~ d1:", d1)
+		performSortHandler!(data.order ,d1.current);
 	};
 
 	// JSX
 	return (
-		<div className={'dynamic-table'}>
+
+		<div className={'dynamic-table'}  >
 			<SearchAndFilter
 				performSearchHandler={performSearchHandler}
 				searchValue={searchValue}
@@ -69,10 +75,13 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 			/>
 			<Table
 				dataSource={userDataSource}
-				scroll={{ y: '61vh', x: '63vh' }}
-				pagination={false}
+				scroll={{ y: '50vh', x: '63vh' }}
+				pagination={{
+					total: totalRecords,
+					current: currentPage,
+					onChange: paginationChangeHandler,
+					pageSize: 10,}}
 				className="table-global"
-				ref={tableRef}
 				onChange={tableChangeHandler}
 			>
 				<Column
@@ -99,14 +108,14 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 					dataIndex="email"
 					key="email"
 					className="bg-white"
-					// width={'379px'}
+				// width={'379px'}
 				/>
 				<Column
 					title="Phone Number"
 					dataIndex="phone"
 					key="phone"
 					className="bg-white"
-					// width={'314px'}
+				// width={'314px'}
 				/>
 				<Column
 					title="Role"
@@ -114,7 +123,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 					key="role"
 					className="bg-white"
 					width={'15%'}
-					// width={'261px'}
+				// width={'261px'}
 				/>
 				<Column
 					title="Status"

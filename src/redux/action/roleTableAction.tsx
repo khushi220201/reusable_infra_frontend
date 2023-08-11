@@ -5,6 +5,7 @@ import { deleteApiWithData, getApi, postApi } from 'redux/apis';
 export const getRoleActionTable = createAsyncThunk(
 	'roleTable/getRolesTable',
 	async (queryObj: any, { rejectWithValue }: any) => {
+		// console.log("🚀 ~ file: roleTableAction.tsx:8 ~ queryObj:", queryObj)
 		try {
 			const response = await getApi(
 				`/role/organization-roles/${localStorage.getItem('companyId')}${
@@ -12,6 +13,7 @@ export const getRoleActionTable = createAsyncThunk(
 				} `
 			);
 
+			console.log("🚀 ~ file: roleTableAction.tsx:17 ~ response.data.data:", response.data.data)
 			return response.data.data;
 		} catch (error: any) {
 			if (!error.response) {

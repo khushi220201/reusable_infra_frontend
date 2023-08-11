@@ -5,12 +5,16 @@ import {
 } from 'components/Global';
 import ConfirmDelete from 'components/Global/confirmDeleteModel';
 import { roleColumns } from 'constants/Data';
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import {
+	ChangeEvent,
+	// useCallback,
+	useEffect, useRef, useState
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	deleteRoleActionTable,
 	getRoleActionTable,
-	paginateRoleTable,
+	// paginateRoleTable,
 } from 'redux/action/roleTableAction';
 import { getPermissionsAction } from 'redux/action/permissionAction';
 import { AppDispatch } from 'redux/store';
@@ -24,7 +28,7 @@ import styles from './index.module.scss';
 const RoleTable = () => {
 	const [drawerAnimation, setDrawerAnimation] = useState<boolean>(false);
 	const [isSideDrawerOpen, setSideDrawerOpen] = useState<boolean>(false);
-	const [isInViewPort, setIsInViewPort] = useState<boolean>(false);
+	// const [isInViewPort, setIsInViewPort] = useState<boolean>(false);
 	const [selectedRole, setSelectedRole] = useState<any>(null);
 	const [sort, setSort] = useState('asc');
 	const [isPermissionDrawerOpen, setPermissionSideDrawerOpen] =
@@ -44,10 +48,17 @@ const RoleTable = () => {
 	const { count, fistTimeFetchLoading } = useSelector(
 		(state: any) => state?.roleTable
 	);
+	console.log(count);
 
 	const { data: permissions, isLoading } = useSelector(
 		(state: any) => state.permissions
 	);
+
+	const totalRecords = useSelector((state: any) => state?.roleTable?.count)
+
+
+	// setRecords(totalRecords)
+	console.log("🚀 ~ file: index.tsx:53 ~ RoleTable ~ totalData:", totalRecords)
 
 	const dispatch = useDispatch<AppDispatch>();
 	useEffect(() => {
@@ -89,7 +100,16 @@ const RoleTable = () => {
 
 	// Handle the pagination for the table
 	const paginationChangeHandler = (pageNo: number) => {
+		console.log("🚀 ~ file: index.tsx:92 ~ paginationChangeHandler ~ pageNo:", pageNo)
+		// alert("page"+pageNo)
 		setCurrentPage(pageNo);
+
+		dispatch(
+			getRoleActionTable({
+				url: `page=${pageNo}&limit=10&search=${searchValue}&sort=${sort}`,
+				isPagination: false,
+			})
+		);
 	};
 
 	// For perform the search operation
@@ -101,6 +121,7 @@ const RoleTable = () => {
 
 	// Perform Filter
 	const performFilterHandler = (value: any) => {
+		// alert(value)
 		setFilterValue(value);
 		if (value == 'all') {
 			dispatch(
@@ -111,9 +132,8 @@ const RoleTable = () => {
 		} else {
 			dispatch(
 				getRoleActionTable({
-					url: `page=${1}&limit=10&search=${searchValue}&sort=${sort}&filter=${
-						value === 'active' ? true : false
-					}`,
+					url: `page=${1}&limit=10&search=${searchValue}&sort=${sort}&filter=${value === 'active' ? true : false
+						}`,
 				})
 			);
 		}
@@ -157,80 +177,84 @@ const RoleTable = () => {
 	};
 
 	//adding body to scroll to table body Infinite scroll
-	const scrollHandler = useCallback((event: any) => {
-		const { currentTarget } = event;
-		const tableBody = currentTarget?.querySelector('tbody');
-		if (
-			tableBody!.getBoundingClientRect().top +
-				tableBody.getBoundingClientRect().height <
-			screen.height - 100
-		) {
-			setIsInViewPort(true);
-		} else {
-			setIsInViewPort(false);
-		}
-	}, []);
+	// const scrollHandler = useCallback((event: any) => {
+	// 	const { currentTarget } = event;
+	// 	const tableBody = currentTarget?.querySelector('tbody');
+	// 	if (
+	// 		tableBody!.getBoundingClientRect().top +
+	// 			tableBody.getBoundingClientRect().height <
+	// 		screen.height - 100
+	// 	) {
+	// 		setIsInViewPort(true);
+	// 	} else {
+	// 		setIsInViewPort(false);
+	// 	}
+	// }, []);
+	console.log(currentPage, "currentPage");
+	// alert(currentPage)
 
 	// For perform the sorting operation
-	const performSortHandler = (type: string) => {
-		setCurrentPage(1);
+	const performSortHandler = (type: string , current : number) => {
+		console.log("🚀 ~ file: index.tsx:198 ~ performSortHandler ~ current:", current)
+		// alert("sort")
+		// setCurrentPage(1);
 		setSort(type === 'ascend' ? 'asc' : 'desc');
 		dispatch(
 			getRoleActionTable({
-				url: `page=${1}&limit=10&search=${searchValue}&sort=${
-					type === 'ascend' ? 'asc' : 'desc'
-				}${
-					filterValue !== 'all'
+				url: `page=${current}&limit=10&search=${searchValue}&sort=${type === 'ascend' ? 'asc' : 'desc'
+					}${filterValue !== 'all'
 						? `&filter=${filterValue === 'active' ? true : false}`
 						: ''
-				}`,
+					}`,
 				isPagination: false,
 			})
 		);
 	};
 
 	// For change in view port
-	useEffect(() => {
-		if (isInViewPort && filteredData.length < count) {
-			setCurrentPage((prev) => prev + 1);
-			dispatch(
-				paginateRoleTable(
-					`page=${currentPage + 1}&limit=10&search=${searchValue}&sort=${sort}${
-						filterValue !== 'all'
-							? `&filter=${filterValue === 'active' ? true : false}`
-							: ''
-					}`
-				)
-			);
-		}
-	}, [isInViewPort]);
+	// useEffect(() => {
+	// 	if (isInViewPort && filteredData.length < count) {
+	// 		setCurrentPage((prev) => prev + 1);
+	// 		dispatch(
+	// 			paginateRoleTable(
+	// 				`page=${currentPage + 1}&limit=10&search=${searchValue}&sort=${sort}${filterValue !== 'all'
+	// 					? `&filter=${filterValue === 'active' ? true : false}`
+	// 					: ''
+	// 				}`
+	// 			)
+	// 		);
+	// 	}
+	// }, [isInViewPort]);
+
+	// console.log(currentPage);
 
 	// For search
 	useEffect(() => {
+		// alert("Please")
+
 		dispatch(
 			getRoleActionTable({
-				url: `page=${1}&limit=10&search=${searchValue}&sort=${sort}${
-					filterValue !== 'all'
-						? `&filter=${filterValue === 'active' ? true : false}`
-						: ''
-				}`,
+				url: `page=${currentPage}&limit=10&search=${searchValue}&sort=${sort}${filterValue !== 'all'
+					? `&filter=${filterValue === 'active' ? true : false}`
+					: ''
+					}`,
 				isPagination: false,
 			})
 		);
 	}, [searchValue]);
 
 	// For perform pagination logic
-	useEffect(() => {
-		if (tableRef.current) {
-			const tableBody = tableRef.current
-				? tableRef.current?.querySelector('.ant-table-body')
-				: null;
-			if (tableBody) {
-				tableBody.addEventListener('scroll', scrollHandler);
-				return () => tableBody.removeEventListener('scroll', scrollHandler);
-			}
-		}
-	}, [tableRef.current]);
+	// useEffect(() => {
+	// 	if (tableRef.current) {
+	// 		const tableBody = tableRef.current
+	// 			? tableRef.current?.querySelector('.ant-table-body')
+	// 			: null;
+	// 		if (tableBody) {
+	// 			tableBody.addEventListener('scroll', scrollHandler);
+	// 			return () => tableBody.removeEventListener('scroll', scrollHandler);
+	// 		}
+	// 	}
+	// }, [tableRef.current]);
 
 	return (
 		<>
@@ -256,7 +280,7 @@ const RoleTable = () => {
 								roleColumns={roleColumns}
 								paginationChangeHandler={paginationChangeHandler}
 								currentPage={currentPage}
-								totalRecords={10}
+								totalRecords={totalRecords}
 								performSearchHandler={performSearchHandler}
 								searchValue={searchValue}
 								showModal={showModal}
@@ -270,6 +294,7 @@ const RoleTable = () => {
 								performFilterHandler={performFilterHandler}
 								filterValue={filterValue}
 							/>
+							{/* {JSON.stringify(currentPage)} */}
 						</div>
 					</>
 				) : (

@@ -11,7 +11,6 @@ export const AuthLayout = () => {
 
 	// 
 	const path = window.location.pathname;
-	console.log("🚀 ~ file: index.tsx:13 ~ AuthLayout ~ window.location:", window.location)
 
 	useEffect(() => {
 		dispatch(fetchProfileAction())

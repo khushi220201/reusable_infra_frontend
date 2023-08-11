@@ -33,10 +33,14 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 		openPermissionsHandler,
 		setEditSelectedRole,
 		fetchRolePermissions,
-		tableRef,
+		paginationChangeHandler,
+		// tableRef,
+		totalRecords,
+		currentPage,
 		performSortHandler,
 	} = props;
 
+	console.log("🚀 ~ file: index.tsx:42 ~ totalData:", totalRecords)
 	const dispatch = useDispatch<AppDispatch>();
 
 	const editDataHandler = (roleObject: any) => {
@@ -71,13 +75,17 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 	};
 
 	// For handle the table change click
-	const tableChangeHandler = (_: any, __: any, data: any) => {
-		performSortHandler!(data.order);
+	const tableChangeHandler = (d1: any, d2: any, data: any) => {
+		console.log("🚀 ~ file: index.tsx:79 ~ tableChangeHandler ~ d1:", d1)
+		console.log("🚀 ~ file: index.tsx:79 ~ tableChangeHandler ~ d2:", d2)
+		console.log("🚀 ~ file: index.tsx:79 ~ tableChangeHandler ~ data:", data)
+		// alert("sort")
+		performSortHandler!(data.order , d1.current);
 	};
 
 	// JSX
 	return (
-		<div className={styles['dynamic-table']}>
+		<div className={styles['dynamic-table']} >
 			<SearchAndFilter
 				performSearchHandler={performSearchHandler}
 				searchValue={searchValue}
@@ -86,9 +94,13 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 			/>
 			<Table
 				dataSource={roleDataSource}
-				scroll={{ y: '61vh', x: '63vh' }}
-				pagination={false}
-				ref={tableRef}
+				scroll={{ y: '50vh', x: '63vh' }}
+				pagination={{
+					total: totalRecords,
+					current: currentPage,
+					onChange: paginationChangeHandler,
+					pageSize: 10,
+				}}
 				className="table-global"
 				onChange={tableChangeHandler}
 			>
@@ -130,7 +142,6 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 					className="bg-white"
 					width={'20%'}
 					render={(value, rowData: any) => {
-						console.log("🚀 ~ file: index.tsx:133 ~ rowData:", rowData)
 						return (
 							<div className={styles['dynamic-table__status']}>
 								{rowData?.isAdmin ? (
@@ -159,8 +170,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 					width={'20%'}
 					render={(_, data: any) => (
 						<>
-							{console.log("🚀 ~ file: index.tsx:163 ~ data:", data)}
-							{data.name==="Accountant" ||data.name==="Read Only" ||data.name==="Company Admin" ? (
+							{data.name === "Accountant" || data.name === "Read Only" || data.name === "Company Admin" ? (
 								// <div className={styles['dynamic-table__granted-permission']}>
 								// 	<PermissionDetailsAdminSvg />
 								// 	<Text
@@ -196,7 +206,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 					width={'20%'}
 					render={(value, data: any) => (
 						<Space size={20}>
-							{data.name=="Accountant" ||data.name==="Read Only"||data.name==="Company Admin" ?``: (
+							{data.name == "Accountant" || data.name === "Read Only" || data.name === "Company Admin" ? `` : (
 								<>
 									<div
 										className="cursor-pointer flex align-center justify-center"
@@ -214,7 +224,7 @@ const DynamicTable: FC<DynamicTableProps> = (props) => {
 										<DeleteActionSvg />
 									</div>
 								</>
-							) }
+							)}
 						</Space>
 					)}
 				/>
