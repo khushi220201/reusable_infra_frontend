@@ -3,19 +3,46 @@ import { LoginLayout } from "layouts";
 import { FORMDATA } from "constants/Data";
 import { loginAction } from "redux/slice/loginSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { getCompanies } from "redux/slice/companySlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchProfileAction } from "redux/action/profileAction";
+import { postApi } from "redux/apis";
+import { toastText } from "utils/utils";
 
 // Login page
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [isIntuitLoading, setIsIntuitLoading] = useState(false);
   const [isXeroLoading, setIsXeroLoading] = useState(false);
+  const [token, setToken] = useState(searchParams.get("token"));
+
+  const first = searchParams.get("first");
+
+  useEffect(() => {
+    // If there's a token, handle token verification and further actions
+    if (token) {
+      setIsLoading(true);
+      postApi(`/auth/verifyemail/${token}`)
+        .then((res) => {
+          if (first) {
+            toastText("Email verification successful", "success");
+            setToken(null);
+            setIsLoading(false);
+          } else {
+            toastText(res?.data?.message, "success");
+            setIsLoading(false);
+          }
+        })
+        .catch((err) => {
+          toastText(err?.response?.data?.message, "error");
+          setIsLoading(false);
+        });
+    }
+  }, [token, first]);
 
   const onSubmit = (values: any) => {
     console.log("values: ", values);
@@ -41,6 +68,7 @@ const Login = () => {
         navigate("/login");
       });
   };
+
   // JSX
   return (
     <LoginLayout>

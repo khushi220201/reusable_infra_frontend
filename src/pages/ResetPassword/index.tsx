@@ -14,17 +14,14 @@ const ResetPassword = () => {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 	const token = searchParams.get('token');
-	console.log("🚀 ~ file: index.tsx:17 ~ ResetPassword ~ token:", token)
+	
 	const first = searchParams.get('first');
-	console.log("🚀 ~ file: index.tsx:19 ~ ResetPassword ~ first:", first)
+	
 	const setPassword = searchParams.get('setPassword');
-	console.log("🚀 ~ file: index.tsx:21 ~ ResetPassword ~ setPassword:", setPassword)
+	
 
 	// State Management
 	const [isLoading, setIsLoading] = useState(false);
-
-
-
 	useEffect(() => {
 		if (first === null) {
 			verifyToken();
@@ -64,7 +61,6 @@ const ResetPassword = () => {
 				});
 		}
 		else{
-			console.log('hekk');
 			setIsLoading(true);
 			// changes to set password
 			postApi(`/auth/set-password/${token}`, values)

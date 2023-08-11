@@ -10,6 +10,7 @@ import { RegisterLayoutBody } from "components/Register";
 import { getApi } from "redux/apis";
 import { toastText } from "utils/utils";
 import { registerAction } from "redux/slice/registerSlice";
+import { toastText } from "utils/utils";
 
 // Register page
 const Register = () => {
@@ -21,7 +22,6 @@ const Register = () => {
   const [isXeroLoading, setIsXeroLoading] = useState(false);
 
   const onSubmit = (values: any) => {
-    console.log("🚀 ~ file: index.tsx:20 ~ onSubmit ~ values:", values)
     setIsLoading(true);
     setIsXeroLoading(false);
     setIsIntuitLoading(false);
